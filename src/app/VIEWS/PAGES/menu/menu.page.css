@@ -1,0 +1,18 @@
+.contentInformation {
+  width: 100%;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.contentInformation ion-avatar {
+  border: 4px solid #ffd31a;
+}
+ion-list {
+  height: 100%;
+}
+ion-list #desconnect {
+  position: fixed;
+  bottom: 0;
+}

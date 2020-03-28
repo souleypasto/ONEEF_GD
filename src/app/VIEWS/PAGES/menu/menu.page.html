@@ -1,0 +1,33 @@
+<ion-split-pane>
+  <ion-menu contentId="content">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <div class="contentInformation">
+          <ion-avatar>
+            <img src="assets/images/icon_test_user.jpg">
+          </ion-avatar>
+          <ion-label class="name">TonTon Soumbill</ion-label>
+          <ion-label class="email">tsillery@ymail.com</ion-label>
+          <ion-label class="role">POMPISTE</ion-label>
+        </div>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
+            <ion-item [routerLink]="p.url" routerDirection="root" [class.active-item]="selectedPath.startsWith(p.url)">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                    {{p.title}}
+                </ion-label>
+            </ion-item>
+        </ion-menu-toggle>
+        <ion-item id="desconnect" tappable routerLink="/login-register" routerDirection="root">
+            <ion-icon name="log-out" slot="start"></ion-icon>
+            <ion-label>Se Deconnecter</ion-label>
+        </ion-item>
+    </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="content" main></ion-router-outlet>
+</ion-split-pane>

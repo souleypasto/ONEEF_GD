@@ -1,0 +1,7 @@
+{
+  "name": "DJANSTAFF_TWO",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

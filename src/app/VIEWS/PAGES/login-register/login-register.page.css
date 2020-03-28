@@ -1,0 +1,12 @@
+.container-log-page {
+  height: 100%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container-log-page ion-card {
+  text-align: center;
+  width: 23rem;
+}

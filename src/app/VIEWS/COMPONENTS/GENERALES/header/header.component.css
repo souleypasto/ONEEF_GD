@@ -1,0 +1,8 @@
+ion-toolbar ion-title .title {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-family: Lato;
+}
+ion-toolbar ion-title .subtitle {
+  font-size: 10px;
+}
