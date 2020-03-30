@@ -1,0 +1,28 @@
+
+
+<app-header [titre]="'ACCEUIL'" [soustitre]="'le sous-titre de la page'"
+  [defaultParenUrl]="'isHome'"></app-header>
+<ion-content>
+  <div class="container-menu">
+    <ng-container *ngIf="levelUser === 2 && listMenuPompiste.length > 0">
+      <ng-container *ngFor="let menu of listMenuPompiste">
+        <app-menu [menu]="menu"></app-menu>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="levelUser === 1 && listMenuChauffeur.length > 0">
+      <ng-container *ngFor="let menu of listMenuChauffeur">
+        <app-menu [menu]="menu"></app-menu>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="levelUser === 3 && listmenuPOwer.length > 0">
+      <ng-container *ngFor="let menu of listmenuPOwer">
+        <app-menu [menu]="menu"></app-menu>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="levelUser === 4 && listMenuManager.length > 0">
+      <ng-container *ngFor="let menu of listMenuManager">
+        <app-menu [menu]="menu"></app-menu>
+      </ng-container>
+    </ng-container>
+  </div>
+</ion-content>

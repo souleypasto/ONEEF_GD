@@ -5,23 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MenuPage } from './menu.page';
+import { ConsomationPage } from './consomation.page';
+import { ComponentModule } from '../../../../MODULES/component/component.module';
 
 const routes: Routes = [
   {
-    path: 'menu',
-    component: MenuPage,
-    children: [
-      {
-        path: 'tabs',
-        loadChildren: '../tabs/tabs.module#TabsPageModule'
-      }
-    ]
-  },
-  {
     path: '',
-    redirectTo: 'menu/tabs',
-    pathMatch: 'full'
+    component: ConsomationPage
   }
 ];
 
@@ -30,8 +20,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ComponentModule
   ],
-  declarations: [MenuPage]
+  declarations: [ConsomationPage]
 })
-export class MenuPageModule {}
+export class ConsomationPageModule {}

@@ -1,17 +1,16 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MessagesPage } from './messages.page';
-import { ComponentModule } from '../../../MODULES/component/component.module';
+import { PinPage } from './pin.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: MessagesPage
+    component: PinPage
   }
 ];
 
@@ -20,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    ComponentModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [MessagesPage]
+  declarations: [PinPage]
 })
-export class MessagesPageModule {}
+export class PinPageModule {}

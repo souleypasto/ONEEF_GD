@@ -6,3 +6,11 @@ ion-toolbar ion-title .title {
 ion-toolbar ion-title .subtitle {
   font-size: 10px;
 }
+ion-toolbar ion-title ion-badge {
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: Lato;
+  text-transform: uppercase;
+  font-size: 8px;
+  background: borwn;
+}

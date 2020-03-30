@@ -14,6 +14,10 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IonicGestureConfig } from './DIRECTIVES/ionic-gesture-config.service';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 
@@ -21,12 +25,15 @@ import { IonicGestureConfig } from './DIRECTIVES/ionic-gesture-config.service';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
     IonicStorageModule.forRoot(),
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
     AngularFirestoreModule,
   ],
   providers: [

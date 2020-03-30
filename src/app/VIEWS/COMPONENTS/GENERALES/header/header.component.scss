@@ -8,5 +8,13 @@ ion-toolbar {
         .subtitle {
             font-size: 10px;
         }
+        ion-badge {
+            padding-left: 15px;
+            padding-right: 15px;
+            font-family: Lato;
+            text-transform: uppercase;
+            font-size: 8px;
+            background: borwn;
+        }
     }   
 }

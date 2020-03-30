@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Utilisateur } from 'src/app/MODELS/Utilisateur';
+import { LocalStorageService } from '../../../../SERVICES/STORAGE/local-storage.service';
+import { CONNECTED_USER_IFO } from 'src/app/TOOLS/INITIALISATION/localStorageVar';
 
 @Component({
   selector: 'app-header',
@@ -18,22 +20,18 @@ export class HeaderComponent implements OnInit {
 
   utilisateur: Utilisateur;
 
-  constructor() {
+  constructor(private localStore: LocalStorageService) {
     this.initClassVar();
    }
 
   ngOnInit() {}
 
   initClassVar() {
-    console.log('initialisation des varaibles de la classe');
-    this.utilisateur = {
-      nom: 'Sillery TALLA',
-      login: 'souley',
-      password: 'bébé'
-    };
     if (this.defaultParenUrl === '' || !this.defaultParenUrl) {
       this.defaultParenUrl = 'tabs';
     }
+    this.localStore.getObject(CONNECTED_USER_IFO).then(connectedUser => {
+      this.utilisateur = connectedUser.userInfo as Utilisateur;
+    });
   }
-
 }

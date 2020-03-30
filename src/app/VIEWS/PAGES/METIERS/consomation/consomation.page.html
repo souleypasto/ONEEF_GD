@@ -1,0 +1,48 @@
+<app-header [titre]="'NOUVELLE CONSOMATION'" [soustitre]="'le sous-titre de la page'"
+  [defaultParenUrl]="'../acceuil'"></app-header>
+
+<ion-content>
+  <div class="container">
+    <form class="form-block">
+      <ion-item lines="none">
+        <ion-label>Pompes :</ion-label>
+        <ion-select name="idPompe" [(ngModel)]="idPompe" placeholder="Choisir Une pompe">
+          <ion-select-option [value]="pompe.id" *ngFor="let pompe of listPompes">
+            <p>{{pompe.libelle_pompe}}</p>
+            <p>{{pompe.code_pompe}}</p>
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>SHIFT:</ion-label>
+        <ion-select name="" [(ngModel)]="idPompe" placeholder="Choisir ">
+          <ion-select-option> Default </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Item:</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Item:</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Item:</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Item:</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Item:</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-buttons>
+        <ion-button color="primary">ANNULER</ion-button>
+        <ion-button disabled>ENREGISTER</ion-button>
+      </ion-buttons>
+    </form>
+  </div>
+</ion-content>

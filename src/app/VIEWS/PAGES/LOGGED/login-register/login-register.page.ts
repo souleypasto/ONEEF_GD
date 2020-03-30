@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { UtilisateurService } from 'src/app/SERVICES/UTILISATEUR/utilisateur.service';
-import { CommunFunction } from '../../../TOOLS/FUNCTIONS/communFunctions';
 import { Utilisateur } from 'src/app/MODELS/Utilisateur';
+import { CommunFunction } from 'src/app/TOOLS/FUNCTIONS/communFunctions';
+import { PompeService } from '../../../../SERVICES/POMPE/pompe.service';
 
 @Component({
   selector: 'app-login-register',
@@ -17,7 +18,7 @@ export class LoginRegisterPage implements OnInit {
   login: string;
   password: string;
 
-  constructor(private util: CommunFunction, private userService: UtilisateurService) { }
+  constructor(private util: CommunFunction, private userService: UtilisateurService, private pumpGen: PompeService) { }
 
   ngOnInit() {
     this.initClassVar();
@@ -36,9 +37,10 @@ export class LoginRegisterPage implements OnInit {
   seConnecter(): void {
     this.isDataWellFilled().then((resultCheck: boolean) => {
       if (resultCheck) {
-        this.userService.isUserDataExists(this.login, this.password).then((userFounded: Utilisateur) => {
+        this.userService.seConnecter(this.login, this.password).subscribe(userFounded => {
           if (userFounded) {
-            this.util.redirectWithRouteQuery(`menu`);
+            this.storeThingsInLocalStorage(userFounded.data);
+            this.util.redirectWithRouteQuery(`pincode`);
           } else {
             this.util.showPopupMessage(`cet Utilisateur nexiste pas `);
           }
@@ -47,6 +49,14 @@ export class LoginRegisterPage implements OnInit {
         this.util.showPopupMessage(`Vous devez remplir tous les champs `);
       }
     });
+  }
+
+  /**
+   * sauvegarde les données utile dans la mémoire interne
+   */
+  storeThingsInLocalStorage(dataUser: any): void {
+    this.userService.storeConnectedUserInLocalStorage(true, dataUser.user);
+    this.pumpGen.storeThisUserPompInLocalStorage(dataUser.pompes);
   }
 
   /**

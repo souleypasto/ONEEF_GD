@@ -1,6 +1,11 @@
 export interface Utilisateur {
-    id?: string;
-    nom: string;
+    id?: number;
     login: string;
-    password: string;
+    full_name: string;
+    pin: string;
+    id_dossier: number;
+    email: string;
+    tel: string;
+    profil: number;
+    description: string;
 }

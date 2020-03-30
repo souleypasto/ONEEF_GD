@@ -14,21 +14,34 @@ const routes: Routes = [
     children: [
       {
         path: 'acceuil',
-        loadChildren: '../acceuil/acceuil.module#AcceuilPageModule'
+        loadChildren: () => import('../../METIERS/acceuil/acceuil.module').then(m => m.AcceuilPageModule)
       },
       {
         path: 'parametrage',
-        loadChildren: '../parametrage/parametrage.module#ParametragePageModule'
+        loadChildren: () => import('../../METIERS/parametrage/parametrage.module').then(m => m.ParametragePageModule)
       },
       {
         path: 'messages',
-        loadChildren: '../messages/messages.module#MessagesPageModule'
+        loadChildren: () => import('../../METIERS/messages/messages.module').then(m => m.MessagesPageModule)
+      },
+      {
+        path: 'consommer',
+        loadChildren: () => import('../../METIERS/consomation/consomation.module').then(m => m.ConsomationPageModule)
+      },
+      {
+        path: 'historique',
+        loadChildren: () => import('../../METIERS/historique/historique.module').then(m => m.HistoriquePageModule)
       },
     ]
   },
   {
     path: '',
     redirectTo: 'tabs/acceuil',
+    pathMatch: 'full'
+  },
+  {
+    path: 'consommer',
+    redirectTo: 'tabs/consommer',
     pathMatch: 'full'
   }
 ];

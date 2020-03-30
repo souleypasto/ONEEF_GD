@@ -6,8 +6,8 @@
           <ion-avatar>
             <img src="assets/images/icon_test_user.jpg">
           </ion-avatar>
-          <ion-label class="name">TonTon Soumbill</ion-label>
-          <ion-label class="email">tsillery@ymail.com</ion-label>
+          <ion-label class="name">{{utilisateur ? utilisateur.full_name : 'Nom de user'}}</ion-label>
+          <ion-label class="email">{{utilisateur ? utilisateur.email : 'Email de user'}}</ion-label>
           <ion-label class="role">POMPISTE</ion-label>
         </div>
       </ion-toolbar>
@@ -22,7 +22,7 @@
                 </ion-label>
             </ion-item>
         </ion-menu-toggle>
-        <ion-item id="desconnect" tappable routerLink="/login-register" routerDirection="root">
+        <ion-item id="desconnect" (click)="setDisconnectedUser()" tappable routerLink="/loggin" routerDirection="root">
             <ion-icon name="log-out" slot="start"></ion-icon>
             <ion-label>Se Deconnecter</ion-label>
         </ion-item>
