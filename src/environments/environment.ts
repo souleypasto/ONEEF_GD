@@ -12,7 +12,8 @@ export const environment = {
     storageBucket: 'djanstaff-fc7e1.appspot.com',
     messagingSenderId: '94612313194',
     appId: '1:94612313194:web:9d63ab7eeee96da2cc6613'
-  }
+  },
+  apiRoot: 'http://yabcesa.com/services/index.php'
 };
 
 /*

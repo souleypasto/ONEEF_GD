@@ -3,6 +3,8 @@ import { IonSlides } from '@ionic/angular';
 import { UtilisateurService } from 'src/app/SERVICES/UTILISATEUR/utilisateur.service';
 import { CommunFunction } from '../../../TOOLS/FUNCTIONS/communFunctions';
 import { Utilisateur } from 'src/app/MODELS/Utilisateur';
+import { Result } from 'src/app/MODELS/Result';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-register',
@@ -17,7 +19,10 @@ export class LoginRegisterPage implements OnInit {
   login: string;
   password: string;
 
-  constructor(private util: CommunFunction, private userService: UtilisateurService) { }
+  constructor(
+    private util: CommunFunction,
+    private userService: UtilisateurService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.initClassVar();
@@ -36,15 +41,16 @@ export class LoginRegisterPage implements OnInit {
   seConnecter(): void {
     this.isDataWellFilled().then((resultCheck: boolean) => {
       if (resultCheck) {
-        this.userService.isUserDataExists(this.login, this.password).then((userFounded: Utilisateur) => {
-          if (userFounded) {
-            this.util.redirectWithRouteQuery(`menu`);
-          } else {
-            this.util.showPopupMessage(`cet Utilisateur nexiste pas `);
-          }
-        });
+          this.userService.login(this.login, this.password).subscribe((result: Result) => {
+            if (!result.error) {
+              this.toastr.success(`Bienvenue ` + result.data.user.nom);
+              this.util.redirectWithRouteQuery(`menu`);
+            } else {
+              this.toastr.error('cet Utilisateur n\'existe pas.');
+            }
+          });
       } else {
-        this.util.showPopupMessage(`Vous devez remplir tous les champs `);
+        this.toastr.error('Vous devez remplir tous les champs');
       }
     });
   }
@@ -55,7 +61,7 @@ export class LoginRegisterPage implements OnInit {
    */
   isDataWellFilled(): Promise<boolean> {
     return new Promise(resultCheck => {
-      if(this.login && this.login !== '' && this.password && this.password !== '') {
+      if (this.login && this.login !== '' && this.password && this.password !== '') {
         resultCheck(true);
       } else {
         resultCheck(false);

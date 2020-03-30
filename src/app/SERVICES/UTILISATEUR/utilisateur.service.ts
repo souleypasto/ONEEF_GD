@@ -1,13 +1,17 @@
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Utilisateur } from 'src/app/MODELS/Utilisateur';
+import { Observable } from 'rxjs';
+import { Result } from 'src/app/MODELS/Result';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurService {
   
-
-  constructor() { }
+private baseUrl = `${environment.apiRoot}/user`;
+  constructor(private http: HttpClient) { }
 
   /**
    * verifier si l'utilisateur Existe dans la BD
@@ -15,14 +19,7 @@ export class UtilisateurService {
    * @param password:: string;
    * @returns Promesse d'un Utilisateur 
    */
-  isUserDataExists(login: string, password: string): Promise<Utilisateur>{
-    return new Promise(resolved => {
-      const utilisateur: Utilisateur = {
-        nom: 'Sillery',
-        login: 'souley',
-        password: 'Victoire.51'
-      }
-      resolved(utilisateur);
-    });
+  login(login: string, password: string): Observable<Result>{
+    return this.http.post<Result>(`${this.baseUrl}/login`, {login, password});
   }
 }
