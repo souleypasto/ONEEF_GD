@@ -5,12 +5,10 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    background: blue;
     padding: 5%;
     .form-block {
         width: 100%;
         max-width: 35rem;
-        background: red;
         padding: 5%;
         position: relative;
         overflow: hidden;
@@ -32,5 +30,10 @@
                 width: calc(50% - 5px);
             }
         }
+    }
+    .row{ 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 }

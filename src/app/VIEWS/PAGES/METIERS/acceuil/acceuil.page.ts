@@ -15,7 +15,7 @@ export class AcceuilPage implements OnInit {
   listMenuPompiste: any = [];
   listMenuChauffeur: any = [];
   listmenuPOwer: any = [];
-  levelUser: number;
+  profil: number;
 
   constructor(private localStore: LocalStorageService) { }
 
@@ -24,7 +24,7 @@ export class AcceuilPage implements OnInit {
   }
 
   initClassVar() {
-    this.getLevelUser();
+    this.getUserProfile();
     this.listMenuHome = LIST_MENU_HOME;
     LIST_MENU_HOME.forEach(menu => {
         if (menu.level === 1) {
@@ -41,30 +41,29 @@ export class AcceuilPage implements OnInit {
           this.listmenuPOwer.push(menu);
         } else if (menu.level === 4) {
           this.listmenuPOwer.push(menu);
-        } 
+        }
       });
   }
-  
   /***
    * recupere le niveau d'accreditation de l'utilisateur Courant 
    */
-  getLevelUser(): void {
+  getUserProfile(): void {
     this.localStore.getObject(CONNECTED_USER_IFO).then(userInfo => {
       if (userInfo) {
         const type = userInfo.userInfo.type;
         if (type === CHAUFFEUR_XTYPE) {
-          this.levelUser = 1;
+          this.profil = 1;
         } else if (type === POMPISTE_XTYPE) {
-          this.levelUser = 2;
+          this.profil = 2;
         } else if (type === ADMIN_XTYPE) {
-          this.levelUser = 3;
+          this.profil = 3;
         } else if (type === SUPERADMIN_XTYPE) {
-          this.levelUser = 4;
+          this.profil = 4;
         } else {
-          this.levelUser = 2;
+          this.profil = 2;
         }
       } else {
-        this.levelUser = 2;
+        this.profil = 2;
       }
     });
   }

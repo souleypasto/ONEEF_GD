@@ -31,6 +31,7 @@
     "@ionic/app-scripts": "^3.2.4",
     "@ionic/storage": "^2.2.0",
     "@swimlane/ngx-datatable": "^16.0.2",
+    "bootstrap": "^4.4.1",
     "com.telerik.plugins.nativepagetransitions": "^0.6.5",
     "cordova-plugin-x-toast": "^2.7.2",
     "cordova-sqlite-storage": "^3.4.0",

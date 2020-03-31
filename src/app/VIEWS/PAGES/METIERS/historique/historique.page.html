@@ -2,5 +2,19 @@
   [defaultParenUrl]="'tabs'"></app-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-list-header>
+      Historique de consommation
+    </ion-list-header>
+    <ion-item *ngFor="let consumption of consumptions">
+      <ion-label>
+        <h2>
+          {{consumption.pompiste_name}}
+        </h2>
+        <p>
+          {{consumption.car_brand}}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

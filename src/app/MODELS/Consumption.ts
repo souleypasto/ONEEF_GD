@@ -10,6 +10,6 @@ export class Consumption {
   public endIndexPompe?: string;
   public dateUnic?: string;
   public pumpLabel?: string;
-  public carBrand?: string;
-  public pompisteName?: string;
+  public car_brand?: string;
+  public pompiste_name?: string;
 }

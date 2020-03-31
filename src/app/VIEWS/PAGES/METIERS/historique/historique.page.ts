@@ -1,4 +1,8 @@
+import { CONSUMPTIONS } from './../../../../TOOLS/INITIALISATION/localStorageVar';
+import { Consumption } from './../../../../MODELS/Consumption';
 import { Component, OnInit } from '@angular/core';
+import { CONNECTED_USER_IFO } from 'src/app/TOOLS/INITIALISATION/localStorageVar';
+import { LocalStorageService } from 'src/app/SERVICES/STORAGE/local-storage.service';
 
 @Component({
   selector: 'app-historique',
@@ -7,9 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoriquePage implements OnInit {
 
-  constructor() { }
+  consumptions: Consumption[];
+  constructor(
+    private localStore: LocalStorageService
+  ) {
+    
+  }
 
   ngOnInit() {
+    console.log(CONSUMPTIONS);
+    this.consumptions = CONNECTED_USER_IFO['consommation'];
+    this.setConsumptionInfo();
   }
+
+
+  setConsumptionInfo() {
+    this.localStore.getObject(CONSUMPTIONS).then(value => {
+      if (value) {
+        this.consumptions = value;
+        console.log(this.consumptions);
+      }
+    });
+   }
 
 }

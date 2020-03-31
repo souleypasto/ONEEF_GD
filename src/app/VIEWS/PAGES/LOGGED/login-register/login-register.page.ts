@@ -1,3 +1,4 @@
+import { Data } from './../../../../MODELS/Data';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { UtilisateurService } from 'src/app/SERVICES/UTILISATEUR/utilisateur.service';
@@ -39,6 +40,7 @@ export class LoginRegisterPage implements OnInit {
       if (resultCheck) {
         this.userService.seConnecter(this.login, this.password).subscribe(userFounded => {
           if (userFounded) {
+            console.log(userFounded);
             this.storeThingsInLocalStorage(userFounded.data);
             this.util.redirectWithRouteQuery(`pincode`);
           } else {
@@ -54,9 +56,10 @@ export class LoginRegisterPage implements OnInit {
   /**
    * sauvegarde les données utile dans la mémoire interne
    */
-  storeThingsInLocalStorage(dataUser: any): void {
-    this.userService.storeConnectedUserInLocalStorage(true, dataUser.user);
+  storeThingsInLocalStorage(dataUser: Data): void {
+    this.userService.storeConnectedUserInLocalStorage(true, dataUser);
     this.pumpGen.storeThisUserPompInLocalStorage(dataUser.pompes);
+    this.userService.storeConsumptionInLocalStorage(dataUser.consommation);
   }
 
   /**

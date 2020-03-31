@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Utilisateur } from '../../MODELS/utilisateur';
+import { Utilisateur } from '../../MODELS/Utilisateur';
 
 @Injectable({
   providedIn: 'root'

@@ -10,7 +10,7 @@ export const RACINE_URL_ONF = 'menu/menu/tabs/tabs/';
 
 export const LIST_MENU_HOME = [
     {
-        title: 'CONSOMMER',
+        title: 'Consommation de',
         subtitle: 'le sous titre du Menu si',
         urlPage: RACINE_URL_ONF + 'consommer',
         icon: 'cart',
@@ -25,6 +25,22 @@ export const LIST_MENU_HOME = [
         description: 'description de ce menu si ',
         level: 1,
     },
+    {
+      title: 'DISTRIBUTION LUBRIFIANT',
+      subtitle: 'le sous titre du Menu si',
+      urlPage: RACINE_URL_ONF + 'distribution',
+      icon: 'barcode',
+      description: 'description de ce menu si ',
+      level: 1,
+    },
+    {
+      title: 'DISTRIBUTION LUBRIFIANT',
+      subtitle: 'le sous titre du Menu si',
+      urlPage: RACINE_URL_ONF + 'distribution',
+      icon: 'barcode',
+      description: 'description de ce menu si ',
+      level: 2,
+  },
     {
       title: 'DEFINIR SON CODE PIN',
       subtitle: 'le sous titre du Menu si',

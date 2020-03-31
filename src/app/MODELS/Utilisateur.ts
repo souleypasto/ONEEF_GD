@@ -1,5 +1,5 @@
-export interface Utilisateur {
-    id?: number;
+export class Utilisateur {
+    public id?: number;
     login: string;
     full_name: string;
     pin: string;

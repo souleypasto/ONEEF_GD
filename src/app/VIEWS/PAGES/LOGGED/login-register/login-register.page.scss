@@ -7,6 +7,21 @@
     align-items: center;
     ion-card {
         text-align: center;
+        padding: 1rem;
         width: 23rem;;
+    }
+    ion-item{ 
+        border-color: #e2dfdf;
+        border: 1px solid #e2dfdf !important;
+        border-radius: 5px;
+        margin: 1rem;
+        ion-label{ 
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: dimgrey;
+            font-size: 1.2rem;
+        }
+    }
+    ion-button{ 
+        background: #0055a4;
     }
 }

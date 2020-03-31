@@ -1,6 +1,6 @@
 import { Data } from './Data';
 
-export class Result{
+export class Result {
     public error?: boolean;
     public data?: Data;
 }

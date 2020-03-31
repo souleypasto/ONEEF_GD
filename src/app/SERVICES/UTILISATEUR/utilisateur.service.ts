@@ -1,3 +1,8 @@
+import { Consumption } from './../../MODELS/Consumption';
+import { Folder } from './../../MODELS/Folder';
+import { Pompiste } from './../../MODELS/Pompiste';
+import { CONSUMPTIONS, CARS, DRIVERS, FOLDERS} from './../../TOOLS/INITIALISATION/localStorageVar';
+import { Data } from './../../MODELS/Data';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from '../STORAGE/local-storage.service';
@@ -11,7 +16,6 @@ import { Events } from '@ionic/angular';
   providedIn: 'root'
 })
 export class UtilisateurService {
-  
   private baseUrl = `${environment.apiRoot}/user`;
 
   constructor(private http: HttpClient, private localstore: LocalStorageService,
@@ -23,7 +27,7 @@ export class UtilisateurService {
    * @param password:: string;
    * @returns Promesse d'un Utilisateur 
    */
-  seConnecter(login: string, password: string): Observable<Result>{
+  seConnecter(login: string, password: string): Observable<Result> {
     return this.http.post<Result>(`${this.baseUrl}/login`, {login, password});
   }
 
@@ -34,10 +38,13 @@ export class UtilisateurService {
    */
   storeConnectedUserInLocalStorage(state: boolean, connectedUser: object): void {
     const objectToStore = {
-      userInfo: state ? connectedUser : null,
-      connected: state ? state : !state
+      userInfo: state ? connectedUser : null
     };
     this.localstore.setObject(CONNECTED_USER_IFO, objectToStore);
     this.events.publish('user:isLogged', state ? connectedUser : null);
+  }
+
+  storeConsumptionInLocalStorage(consumptions: Consumption[]): void {
+    this.localstore.setObject(CONSUMPTIONS, consumptions);
   }
 }

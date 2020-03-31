@@ -8,21 +8,33 @@
         <ion-label>Pompes :</ion-label>
         <ion-select name="idPompe" [(ngModel)]="idPompe" placeholder="Choisir Une pompe">
           <ion-select-option [value]="pompe.id" *ngFor="let pompe of listPompes">
-            <p>{{pompe.libelle_pompe}}</p>
-            <p>{{pompe.code_pompe}}</p>
+            <ion-label>
+              <h2>
+                {{pompe.libelle_pompe}}
+              </h2>
+              <p>
+                {{pompe.code_pompe}}
+              </p>
+            </ion-label>
           </ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item lines="none">
-        <ion-label>SHIFT:</ion-label>
-        <ion-select name="" [(ngModel)]="idPompe" placeholder="Choisir ">
-          <ion-select-option> Default </ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label>Item:</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
+      <div class="row">
+        <div class="col-3">
+            <ion-item lines="none">
+                <ion-label>SHIFT:</ion-label>
+                <ion-select name="" [(ngModel)]="idPompe" placeholder="Choisir ">
+                  <ion-select-option> Default </ion-select-option>
+                </ion-select>
+              </ion-item>
+        </div>
+        <div class="col-3">
+            <ion-item lines="none">
+                <ion-label>Item:</ion-label>
+                <ion-input></ion-input>
+              </ion-item>
+        </div>
+      </div>
       <ion-item lines="none">
         <ion-label>Item:</ion-label>
         <ion-input></ion-input>
