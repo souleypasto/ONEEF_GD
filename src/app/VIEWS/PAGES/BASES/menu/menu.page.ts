@@ -15,26 +15,30 @@ import { CommunFunction } from '../../../../TOOLS/FUNCTIONS/communFunctions';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
-  
   selectedPath = '';
   pages = LIST_PAGE_MENU;
   utilisateur: Utilisateur;
   additionalPage =  ADDITIONAL_POMP_MENU;
-  addAdditionalPage: boolean = false;
+  addAdditionalPage = false;
 
-  constructor(private events: Events, private router: Router, private userGen: UtilisateurService,
-              private localStore: LocalStorageService, private modlCtrl: ModalController, private util: CommunFunction) {
+  constructor(
+    private events: Events,
+    private router: Router,
+    private userGen: UtilisateurService,
+    private localStore: LocalStorageService,
+    private modlCtrl: ModalController,
+    private util: CommunFunction) {
+
     this.router.events.subscribe((event: RouterEvent) => {
       if (event && event.url) {
         this.selectedPath = event.url;
       }
     });
-    this.setUserInformation();
-    this.setEventListener();
    }
 
   ngOnInit() {
-    
+    this.setUserInformation();
+    this.setEventListener();
   }
 
   setEventListener() {
@@ -48,7 +52,7 @@ export class MenuPage implements OnInit {
   }
 
   /***
-   * 
+   *
    */
   setUserInformation() {
      this.localStore.getObject(CONNECTED_USER_IFO).then(value => {

@@ -12,6 +12,7 @@ import { Result } from 'src/app/MODELS/Results';
 import { environment } from 'src/environments/environment';
 import { Events } from '@ionic/angular';
 import { CommunFunction } from '../../TOOLS/FUNCTIONS/communFunctions';
+import { getIconMap } from 'ionicons/dist/types/icon/utils';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class UtilisateurService {
    * verifier si l'utilisateur Existe dans la BD
    * @param login:: string
    * @param password:: string;
-   * @returns Promesse d'un Utilisateur 
+   * @returns Promesse d'un Utilisateur
    */
   seConnecter(login: string, password: string): Observable<Result> {
     return this.http.post<Result>(`${this.baseUrl}/login`, {login, password});
@@ -59,4 +60,20 @@ export class UtilisateurService {
       resolved(true);
     });
   }
+
+  /**
+   * methode permettant de changer le code pin
+   */
+   updatePin(userId: number, pin: string): Observable<any> { 
+     return this.http.post(`${this.baseUrl}/update_pin`, {userId, pin});
+   }
+
+   /**
+    * mey-thode permettant de reinitialiser le mot de passe de l'utilisateur
+  * @param login
+    * @param password
+    */
+  updateUserPassword(login: string, password: string): Observable<any> {
+     return this.http.post(`${this.baseUrl}/update_password`, {login, password });
+   }
 }

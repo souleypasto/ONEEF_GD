@@ -16,7 +16,6 @@ export class MenuComponent implements OnInit {
   @Input() menu: any;
 
   constructor(private util: CommunFunction) {
-    
    }
 
   ngOnInit() {
@@ -30,12 +29,6 @@ export class MenuComponent implements OnInit {
     if (this.menu) {
       if (!this.template) {
         this.template = 'DEFAULT';
-      }
-      if (!this.menu.subtitle) {
-        this.menu = 'le sous titre du Menu';
-      }
-      if (!this.menu.subtitle) {
-        this.menu.subtitle = 'la description du truc si ici ';
       }
     }
   }

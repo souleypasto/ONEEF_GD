@@ -16,9 +16,9 @@ import { Events } from '@ionic/angular';
   styleUrls: ['./consomation.page.scss'],
 })
 export class ConsomationPage implements OnInit {
-  
+
   //
-  // Variable binder sur le formulaire 
+  // Variable binder sur le formulaire
   //
   chosedPump: Pump;
   hoursAvailable: string;
@@ -35,7 +35,7 @@ export class ConsomationPage implements OnInit {
   shift: string;
 
   //
-  // Variable selection dans le Formulaire 
+  // Variable selection dans le Formulaire
   //
   listPompes: Pump[] = [];
   listVehicules: Vehicule[];
@@ -46,7 +46,7 @@ export class ConsomationPage implements OnInit {
   idPompiste: number;
   defaultParentUrl: string;
 
-  constructor(private pompisteService: PompisteService, private localStore: LocalStorageService, private util: CommunFunction, 
+  constructor(private pompisteService: PompisteService, private localStore: LocalStorageService, private util: CommunFunction,
               private consServ: ConsumptionsService, private events: Events) {
     this.xinitVarForCurrentForm();
   }
@@ -55,9 +55,9 @@ export class ConsomationPage implements OnInit {
   }
 
   /**
-   * elle regroupe juste les Fonction d'initialisation pour ne pas avoir a lire beaucoup de chose dans le constructeur 
-   * @returns :: Nothings evidment 
-   * aucun parametre 
+   * elle regroupe juste les Fonction d'initialisation pour ne pas avoir a lire beaucoup de chose dans le constructeur
+   * @returns :: Nothings evidment
+   * aucun parametre
    */
   xinitVarForCurrentForm(): void  {
     this.getListPompeOfTHisUser();
@@ -67,16 +67,16 @@ export class ConsomationPage implements OnInit {
   }
 
   /**
-   * action qui s'execute juste avant que la vue ne souvre 
-   * c'est pour mettre a jour le menu 
+   * action qui s'execute juste avant que la vue ne souvre
+   * c'est pour mettre a jour le menu
    */
   ionViewWillEnter() {
     this.events.publish('menu', true);
   }
 
   /**
-   * action qui s'esxecute au moment ou on veux abandonner la vue  
-   * c'est pour mettre a jour le menu  encore 
+   * action qui s'esxecute au moment ou on veux abandonner la vue
+   * c'est pour mettre a jour le menu  encore
    */
   ionViewWillLeave() {
     this.events.publish('menu', false);
@@ -175,9 +175,9 @@ export class ConsomationPage implements OnInit {
   }
 
   /**
-   * Cette fonction permet principalement de construire l'objet qu'on enverra a la sauvegarde 
-   * la fonction ne sera executé que si les donnée ont été bien rempli dans la fontion qui la precede 
-   * @returns :: Promise <Consumption></Consumption> la promesse de l'objet en question . 
+   * Cette fonction permet principalement de construire l'objet qu'on enverra a la sauvegarde
+   * la fonction ne sera executé que si les donnée ont été bien rempli dans la fontion qui la precede
+   * @returns :: Promise <Consumption></Consumption> la promesse de l'objet en question .
    */
   buildObjectConsumpTion(): Promise<Consumption> {
     return new Promise (resolved => {

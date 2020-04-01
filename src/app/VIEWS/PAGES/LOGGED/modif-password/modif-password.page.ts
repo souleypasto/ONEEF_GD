@@ -1,7 +1,11 @@
+import { LocalStorageService } from 'src/app/SERVICES/STORAGE/local-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CommunFunction } from '../../../../TOOLS/FUNCTIONS/communFunctions';
 import { UtilisateurService } from '../../../../SERVICES/UTILISATEUR/utilisateur.service';
+import { User } from 'firebase';
+import { CONNECTED_USER_IFO } from 'src/app/TOOLS/INITIALISATION/localStorageVar';
+import { Utilisateur } from 'src/app/MODELS/Utilisateur';
 
 @Component({
   selector: 'app-modif-password',
@@ -13,9 +17,13 @@ export class ModifPasswordPage implements OnInit {
   oldPassword: string;
   newcPassword: string;
   newPassword: string;
+  user: Utilisateur;
 
-  constructor(private mdlCtrl: ModalController, private util: CommunFunction,
-              private userServ: UtilisateurService) { }
+  constructor(
+    private mdlCtrl: ModalController,
+    private util: CommunFunction,
+    private userServ: UtilisateurService,
+    private localStore: LocalStorageService) { }
 
   ngOnInit() {
   }
@@ -38,10 +46,10 @@ export class ModifPasswordPage implements OnInit {
   /**
    * Process TO Modifiying Password
    */
-  modifyPasswor() {
+   modifiedPasswor() {
     this.isDataWellFilled().then((resolved: boolean) => {
-      if (resolved) {
-        this.userServ.modifyThisUserPassword(this.newPassword).then(resulOperation => {
+      if (resolved && this.user) {
+        this.userServ.updateUserPassword(this.user.email, this.newPassword).subscribe(resulOperation => {
           if (resulOperation) {
             this.util.showPopupMessage('Modification Mot de passe Reussi');
             this.closeThisModal();
@@ -77,4 +85,13 @@ export class ModifPasswordPage implements OnInit {
     });
   }
 
+  getLocalUserInfo() {
+    this.localStore.getObject(CONNECTED_USER_IFO).then(connectedUser => {
+      if (connectedUser) {
+        this.user = connectedUser.userInfo.user as Utilisateur;
+      } else {
+        this.user = null;
+      }
+    });
+  }
 }

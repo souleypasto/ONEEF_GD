@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 3rem;
     .cadran-buttn {
         width: 100%;
         display: flex;
@@ -12,10 +13,11 @@
         justify-content: center;
         align-items: center;
         .cadran {
-            width: 60px;
-            height: 60px;
-            background: red;
-            margin-left: 5px;
+            width: 35px;
+            height: 35px;
+            background:#0055a4;
+            border: 6px rgba(219, 211, 211, 0.932) solid;
+            margin: 0.5rem;
         }
     }
     .button-carried {
@@ -31,20 +33,7 @@
             justify-content: center;
             align-items: center;
             margin-top: 5px;
-            .button-box {
-                width: 80px;
-                height: 80px;
-                background: black;
-                margin-left: 5px; 
-                color: white;
-                font-size: 35px;
-                text-transform: uppercase;
-                font-family: Lato;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
+           
         }
     }
     .button-action {
@@ -53,6 +42,7 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        margin: auto;
         ion-button {
             width: 10rem;
         }

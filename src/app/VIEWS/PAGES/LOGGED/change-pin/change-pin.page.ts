@@ -43,7 +43,7 @@ export class ChangePinPage implements OnInit {
   /**
    * 
    */
-  storeValue(value: number) : void {
+  storeValue(value: number): void {
     this.buildNewPing = this.buildNewPing + value.toString();
   }
 

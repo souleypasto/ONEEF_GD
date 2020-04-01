@@ -8,7 +8,8 @@ import { CommunFunction } from '../../../../TOOLS/FUNCTIONS/communFunctions';
 })
 export class PinPage implements OnInit {
 
-  isToChangePin: boolean;
+  buildNewPing: boolean;
+
 
   constructor(private util: CommunFunction) { }
 
@@ -20,7 +21,7 @@ export class PinPage implements OnInit {
    * initialise les variables de la clase
    */
   initClassVar() {
-    this.isToChangePin = false;
+    this.buildNewPing = false;
   }
 
   /**
@@ -28,6 +29,22 @@ export class PinPage implements OnInit {
    */
   goIntoApplication() {
     this.util.redirectWithRouteQuery(`menu`);
+  }
+
+  /***
+   * operation du Pin
+   */
+  annulerAction() {
+    this.util.redirectWithRouteQuery(`menu`);
+  }
+
+  /**
+   *
+   */
+  validerNouveauPin(): void {
+    const newPin = this.buildNewPing;
+    // TO DO
+    this.annulerAction();
   }
 
 }

@@ -1,82 +1,116 @@
-<app-header [titre]="'NOUVELLE CONSOMATION'" [soustitre]="'le sous-titre de la page'" [defaultParenUrl]="defaultParentUrl">
+<app-header [titre]="'CONSOMMATION'" [soustitre]="'le sous-titre de la page'" [defaultParenUrl]="defaultParentUrl">
 </app-header>
 
 <ion-content>
+  <h4>Nouvelle Consommation</h4>
   <div class="container">
     <form class="form-block">
-      <ion-item lines="none">
-        <ion-label>Pompes :</ion-label>
-        <ion-select name="chosedPump" [(ngModel)]="chosedPump" placeholder="Choisir Une pompe">
-          <ion-select-option [value]="pompe" *ngFor="let pompe of listPompes">
-            <ion-label>
-              <h2>
-                {{pompe.libelle_pompe}}
-              </h2>
-              <p>
-                {{pompe.code_pompe}}
-              </p>
-            </ion-label>
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label>SHIFT:</ion-label>
-        <ion-select (ionChange)="onShiftSelected()" name="shift" [(ngModel)]="hoursAvailable" placeholder="SHIFT">
-          <ion-select-option> NUIT </ion-select-option>
-          <ion-select-option> JOUR </ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label>TYPES DE CARBURANT </ion-label>
-        <ion-select name="typeCarburant" [(ngModel)]="typeCarburant" placeholder="Choisir" >
-          <ion-select-option value="GO">GO</ion-select-option>
-          <ion-select-option value="PO">PO</ion-select-option>
-          <ion-select-option value="TO">TO</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label>VEHICULES :</ion-label>
-        <ion-select (ionChange)="fullFieldDriver()" name="vehicule" [(ngModel)]="vehicule" placeholder="Choisir" >
-          <ion-select-option [value]="vehicule" *ngFor="let vehicule of listVehicules">
-            <p>{{vehicule.marque_modele}}</p><br>
-            <p>{{vehicule.current_odometer + 'Km' + vehicule.immatriculation}}</p>
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label>CHAUFFEUR :</ion-label>
-        <ion-input name="chauffeur" disabled [placeholder]="chauffeurName"></ion-input>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label>ANCIENNE DISTANCE :</ion-label>
-        <ion-input type="numeric" name="oldDistance" [(ngModel)]="oldDistance"></ion-input>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label>NOUVELLE DISTANCE :</ion-label>
-        <ion-input type="numeric" name="newDistance" [(ngModel)]="newDistance"></ion-input>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label>MESURE / DEBUT :</ion-label>
-        <ion-input type="numeric"  name="startIndex" [(ngModel)]="startIndex"></ion-input>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label>MESURE / FIN :</ion-label>
-        <ion-input type="numeric" name="endIndex" [(ngModel)]="endIndex"></ion-input>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label>depensé :</ion-label>
-        <ion-input type="numeric" name="mesure" disabled [placeholder]="mesure"></ion-input>
-      </ion-item>
-      <div class="carried-photo">
-        <div class="image-blokc"></div>
-        <ion-button expand="full"> 
-          <ion-icon  name="photo"></ion-icon>AJOUTTER IMAGE
-        </ion-button>
+      <div class ="row">
+        <div>
+          <ion-label>Pompe:</ion-label>
+          <div class="form-group">
+            <ion-select name="chosedPump" [(ngModel)]="chosedPump" placeholder="Pompe">
+              <ion-select-option [value]="pompe" *ngFor="let pompe of listPompes">
+                <ion-label>
+                  <h2>
+                    {{pompe.libelle_pompe}}
+                  </h2>
+                  <p>
+                    {{pompe.code_pompe}}
+                  </p>
+                </ion-label>
+              </ion-select-option>
+            </ion-select>
+        </div>
+          </div>
+          <div>
+              <ion-label>Shift:</ion-label>
+              <div class="form-group" >
+                <ion-select (ionChange)="onShiftSelected()" name="shift" [(ngModel)]="hoursAvailable" placeholder="Shift">
+                  <ion-select-option> NUIT </ion-select-option>
+                  <ion-select-option> JOUR </ion-select-option>
+                </ion-select>
+              </div>
+          </div>
       </div>
-      <ion-buttons>
-        <ion-button color="primary">ANNULER</ion-button>
-        <ion-button (click)="processStoreConsomation()">ENREGISTER</ion-button>
-      </ion-buttons>
+      <div>
+        <ion-label>Types de Carburant</ion-label>
+        <div class="form-group">
+            <ion-select  name="typeCarburant" [(ngModel)]="typeCarburant" placeholder="Choisir" >
+                <ion-select-option value="GO">GO</ion-select-option>
+                <ion-select-option value="PO">PO</ion-select-option>
+                <ion-select-option value="TO">TO</ion-select-option>
+              </ion-select>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <ion-label>Véhicule:</ion-label>
+          <div class="form-group">
+              <ion-select class="form-select"
+                        (ionChange)="fullFieldDriver()"
+                        name="vehicule"
+                        [(ngModel)]="vehicule"
+                        placeholder="Choisir">
+                  <ion-select-option [value]="vehicule" *ngFor="let vehicule of listVehicules">
+                    <p>{{vehicule.marque_modele}}</p><br>
+                    <p>{{vehicule.current_odometer + 'Km' + vehicule.immatriculation}}</p>
+                  </ion-select-option>
+                </ion-select>
+          </div>
+          
+        </div>
+        <div>
+          <ion-label>Chauffeur :</ion-label>
+          <div class="form-group">
+              <ion-input name="chauffeur" disabled [placeholder]="chauffeurName"></ion-input>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div>
+              <ion-label>Ancienne Distance :</ion-label>
+              <div class="form-group">
+                <ion-input type="numeric" name="oldDistance" [(ngModel)]="oldDistance"></ion-input>
+              </div>
+            </div>
+          <div>
+              <ion-label>ouvelle Distance :</ion-label>
+              <div class="form-group">
+                <ion-input type="numeric" name="newDistance" [(ngModel)]="newDistance"></ion-input>
+              </div>
+            </div>
+      </div>
+      <div class="row">
+          <div>
+              <ion-label>Mesure / début :</ion-label>
+              <div class="form-group">
+                <ion-input type="numeric"  name="startIndex" [(ngModel)]="startIndex"></ion-input>
+              </div>
+            </div>
+            <div>
+                <ion-label>Mesure / Fin :</ion-label>
+                <div class="form-group">
+                  <ion-input type="numeric" name="endIndex" [(ngModel)]="endIndex"></ion-input>
+                </div>
+            </div>
+            <div>
+              <ion-label>Dépensé :</ion-label>
+              <div class="form-group">
+                <ion-input type="numeric" name="mesure" disabled [placeholder]="mesure"></ion-input>
+              </div>
+            </div>
+      </div>
+      <div class="row">
+              <div class="button"> 
+                <ion-icon  name="photo"></ion-icon>Ajouter une Photo
+              </div>
+            
+            <button disabled="true" class="validate">
+              <div (click)="processStoreConsomation()">Valider Opération</div>
+            </button>
+      </div>
+      
     </form>
   </div>
 </ion-content>

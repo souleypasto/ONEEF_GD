@@ -10,8 +10,7 @@ export const RACINE_URL_ONF = 'menu/menu/tabs/tabs/';
 
 
 export const LIST_MENU_HOME = [{
-    title: 'Consommation de',
-    subtitle: 'le sous titre du Menu si',
+    title: 'CONSOMMATION DE CARBURANT',
     urlPage: RACINE_URL_ONF + 'consommer',
     icon: 'cart',
     description: 'description de ce menu si',
@@ -19,7 +18,6 @@ export const LIST_MENU_HOME = [{
   },
   {
     title: 'HISTORIQUE DE CONSOMATION',
-    subtitle: 'le sous titre du Menu si',
     urlPage: RACINE_URL_ONF + 'historique',
     icon: 'barcode',
     description: 'description de ce menu si ',
@@ -27,7 +25,6 @@ export const LIST_MENU_HOME = [{
   },
   {
     title: 'DISTRIBUTION LUBRIFIANT',
-    subtitle: 'le sous titre du Menu si',
     urlPage: RACINE_URL_ONF + 'distribution',
     icon: 'barcode',
     description: 'description de ce menu si ',
@@ -59,7 +56,6 @@ export const LIST_MENU_HOME = [{
   },
   {
     title: 'GESTION DES VEHICULES',
-    subtitle: 'le sous titre du Menu si',
     urlPage: 'default',
     icon: 'construct',
     description: 'description de ce menu si ',
@@ -67,14 +63,12 @@ export const LIST_MENU_HOME = [{
   },
   {
     title: 'SWIFT',
-    subtitle: 'le sous titre du Menu si',
     urlPage: 'default',
     icon: 'cellular',
     description: 'description de ce menu si ',
     level: 3,
   }, {
     title: 'DASHBOAD',
-    subtitle: 'le sous titre du Menu si',
     urlPage: 'default',
     icon: 'bar-chart',
     description: 'description de ce menu si ',

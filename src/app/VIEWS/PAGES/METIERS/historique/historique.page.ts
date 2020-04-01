@@ -28,7 +28,7 @@ export class HistoriquePage implements OnInit {
 
   /**
    * initialisation des Varaibles de la classe 
-   * @returns :: Nothings 
+   * @returns :: Nothings
    */
   initClassVar() {
     this.initConsumptionList();

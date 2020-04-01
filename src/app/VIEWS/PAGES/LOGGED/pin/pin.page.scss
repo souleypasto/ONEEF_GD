@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 3rem;
     .cadran-buttn {
         width: 100%;
         display: flex;
@@ -12,8 +13,38 @@
         justify-content: center;
         align-items: center;
         .cadran {
-            width: calc(100% / 6);
-            height: 50px;
+            width: 35px;
+            height: 35px;
+            background:#0055a4;
+            border: 6px rgba(219, 211, 211, 0.932) solid;
+            margin: 0.5rem;
+        }
+    }
+    .button-carried {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .block-3 {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5px;
+           
+        }
+    }
+    .button-action {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        ion-button {
+            width: 10rem;
         }
     }
 }

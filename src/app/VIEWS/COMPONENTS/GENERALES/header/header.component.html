@@ -5,17 +5,15 @@
     </ion-buttons>
     <ion-title>
       <div class="title">{{titre}}</div>
-      <div class="subtitle">{{soustitre}}</div>
-      <ion-badge>{{'pompiste'}}</ion-badge>
     </ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
       <ion-chip>
         <ion-avatar>
           <img src="assets/images/icon_test_user.jpg">
         </ion-avatar>
-        <ion-label>{{utilisateur ? utilisateur.full_name : 'Default Name'}}</ion-label>
+        <ion-badge>{{'pompiste'}}</ion-badge>
       </ion-chip>
-      <ion-menu-button></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
