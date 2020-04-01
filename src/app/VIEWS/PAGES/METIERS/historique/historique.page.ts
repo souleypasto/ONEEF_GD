@@ -1,8 +1,9 @@
 import { CONSUMPTIONS } from './../../../../TOOLS/INITIALISATION/localStorageVar';
 import { Consumption } from './../../../../MODELS/Consumption';
 import { Component, OnInit } from '@angular/core';
-import { CONNECTED_USER_IFO } from 'src/app/TOOLS/INITIALISATION/localStorageVar';
 import { LocalStorageService } from 'src/app/SERVICES/STORAGE/local-storage.service';
+import { ConsumptionsService } from '../../../../SERVICES/CONSUMPTIONS/consumptions.service';
+import { CommunFunction } from '../../../../TOOLS/FUNCTIONS/communFunctions';
 
 @Component({
   selector: 'app-historique',
@@ -11,27 +12,47 @@ import { LocalStorageService } from 'src/app/SERVICES/STORAGE/local-storage.serv
 })
 export class HistoriquePage implements OnInit {
 
-  consumptions: Consumption[];
-  constructor(
-    private localStore: LocalStorageService
-  ) {
-    
-  }
+  //
+  // Varaible de classe
+  //
+  defaultParentUrl: string;
+
+  listconsumptions: Consumption[];
+
+  constructor(private consoService: ConsumptionsService,  private localStore: LocalStorageService,
+              private util: CommunFunction) {}
 
   ngOnInit() {
-    console.log(CONSUMPTIONS);
-    this.consumptions = CONNECTED_USER_IFO['consommation'];
-    this.setConsumptionInfo();
+    this.initClassVar();
+  }
+
+  /**
+   * initialisation des Varaibles de la classe 
+   * @returns :: Nothings 
+   */
+  initClassVar() {
+    this.initConsumptionList();
   }
 
 
-  setConsumptionInfo() {
-    this.localStore.getObject(CONSUMPTIONS).then(value => {
-      if (value) {
-        this.consumptions = value;
-        console.log(this.consumptions);
+  /**
+   * initialise la liste des consomation .. 
+   */
+  initConsumptionList() {
+    this.consoService.getCurrentUserConsomtionsList().then((listconsumptions: Consumption[]) => {
+      if (listconsumptions && listconsumptions.length > 0) {
+        this.listconsumptions = listconsumptions;
+      } else {
+        this.listconsumptions = [];
       }
     });
+   }
+
+   /**
+    * Permet de rediriger vers la Page de consomation
+    */
+   openNewConsomationPage() {
+    this.util.redirectWithRouteQuery(`menu/menu/tabs/tabs/consommer`);
    }
 
 }

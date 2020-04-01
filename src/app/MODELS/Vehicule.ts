@@ -1,12 +1,13 @@
 export class Vehicule {
   public immatriculation: string;
-  public marqueModele: string;
+  public marque_modele: string;
   public marque: string;
-  public driverName: string;
-  public currentOdometer: string;
-  public idDriver: string;
+  public driver_name: string;
+  public current_odometer: string;
+  public id_driver: string;
   public description: string;
   public deleting: boolean;
-  public idDossier: number;
-  public id?: string;
+  public id_Dossier: number;
+  public id?: number;
+  public libelle_dossier: string
   }

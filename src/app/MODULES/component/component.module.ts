@@ -1,3 +1,4 @@
+import { ConsumptionComponent } from './../../VIEWS/COMPONENTS/METIERS/consumption/consumption.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../VIEWS/COMPONENTS/GENERALES/header/header.component';
@@ -9,7 +10,8 @@ import { MenuComponent } from '../../VIEWS/COMPONENTS/GENERALES/menu/menu.compon
 @NgModule({
   declarations: [
     HeaderComponent,
-    MenuComponent
+    MenuComponent,
+    ConsumptionComponent
 
   ],
   imports: [
@@ -17,7 +19,8 @@ import { MenuComponent } from '../../VIEWS/COMPONENTS/GENERALES/menu/menu.compon
   ],
   exports: [
     HeaderComponent,
-    MenuComponent
+    MenuComponent,
+    ConsumptionComponent
   ]
 })
 export class ComponentModule { }

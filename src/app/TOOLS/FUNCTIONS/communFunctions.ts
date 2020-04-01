@@ -7,8 +7,7 @@ import { Storage } from '@ionic/storage';
   providedIn: 'root'
 })
 export class CommunFunction {
-
-
+ 
   constructor(public alertController: AlertController,
               private loadingController: LoadingController, private router: Router, private navCtrl: NavController,
               private toastCtrl: ToastController, private storage: Storage) {}
@@ -30,6 +29,16 @@ export class CommunFunction {
         resolved(newTab);
       });
   }
+
+  /**
+   * permet de recupérer l'heure courante , doit etre mieux implémenté
+   * ne prends rien en paramettre
+   * @returns :: Date 
+   */
+  getCurrentTimeDate(): Date {
+    return new Date();
+  }
+
   /**
    * permet de redirgier vers une nouvelle page
    * @param params parametres de redirections
@@ -127,12 +136,11 @@ export class CommunFunction {
 
   async presentAlert(messageShow: string) {
     const alert = await this.alertController.create({
-      header: 'Informations MANTRANS',
+      header: 'Informations ONNEFF',
       subHeader: '',
       message: messageShow,
       buttons: ['OK']
     });
-
     await alert.present();
   }
 
@@ -176,18 +184,7 @@ export class CommunFunction {
     return loading;
   }
 
-  /**
-   * Cette fonction permet de rediriger la page vers le Menu de
-   * gestion du Panier afin deffectuez des paiement ou encore de verifier sa facture
-   * @param valueEvent
-   * @param parentPageReceive
-   */
-  opentBasketPage(valueEvent: any, parentPageReceive: string) {
-    const objectPage = {
-      parentPage: parentPageReceive
-    };
-    this.redirectWithRouteQuery('tabs/tabs/manage-cart', objectPage);
-  }
+
 
   /**
    * renvoie le message de fonction non encore implémenter
@@ -198,7 +195,7 @@ export class CommunFunction {
 
   async showPopupMessage(messageText: string) {
     const alert = await this.alertController.create({
-      header: 'MANTRANS',
+      header: 'ONNEFF',
       subHeader: 'Information Warning',
       message: messageText,
       buttons: ['OK']
@@ -221,6 +218,7 @@ export class CommunFunction {
   /**
    * get time from current time
    * @param dateTIme
+   * @retuns string
    */
   getHoursFromDateTImeString(dateTIme?: any) {
     const d = !dateTIme ? new Date() : new Date(dateTIme);
@@ -229,6 +227,8 @@ export class CommunFunction {
     const sec = d.getSeconds();
     return hours + '-' + min + '-' + sec;
   }
+
+  
 
   /**
    * permet de comparer une date de type yyyy-mm-dd avec la date courante dans la zone

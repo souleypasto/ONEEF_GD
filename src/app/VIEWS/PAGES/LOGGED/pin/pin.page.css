@@ -6,3 +6,14 @@
   justify-content: center;
   align-items: center;
 }
+.container .cadran-buttn {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.container .cadran-buttn .cadran {
+  width: calc(100% / 6);
+  height: 50px;
+}

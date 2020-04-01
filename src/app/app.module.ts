@@ -15,8 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IonicGestureConfig } from './DIRECTIVES/ionic-gesture-config.service';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
+import { ModifPasswordPageModule } from './VIEWS/PAGES/LOGGED/modif-password/modif-password.module';
 
 
 
@@ -32,9 +31,9 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    ToastrModule.forRoot(),
-    BrowserAnimationsModule,
     AngularFirestoreModule,
+    ModifPasswordPageModule
+
   ],
   providers: [
     NativePageTransitions, AngularFireDatabase,

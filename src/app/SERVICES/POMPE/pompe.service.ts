@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../STORAGE/local-storage.service';
 import { LIST_USER_PUMP_STR } from 'src/app/TOOLS/INITIALISATION/initVar';
+import { CONNECTED_USER_IFO } from '../../TOOLS/INITIALISATION/localStorageVar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PompeService {
-  
 
   constructor(private localStore: LocalStorageService) { }
 
@@ -17,4 +17,5 @@ export class PompeService {
   storeThisUserPompInLocalStorage(listpompes: any): void {
     this.localStore.setObject(LIST_USER_PUMP_STR, listpompes);
   }
+
 }

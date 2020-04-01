@@ -1,0 +1,40 @@
+
+
+<ion-content>
+  <div class="container">
+    <div class="cadran-buttn">
+      <div class="cadran"></div>
+      <div class="cadran"></div>
+      <div class="cadran"></div>
+      <div class="cadran"></div>
+      <div class="cadran"></div>
+      <div class="cadran"></div>
+    </div>
+    <div class="button-carried">
+      <div class="block-3">
+        <div class="button-box" (click)="storeValue(1)">1</div>
+        <div class="button-box" (click)="storeValue(2)">2</div>
+        <div class="button-box" (click)="storeValue(3)">3</div>
+      </div>
+      <div class="block-3">
+        <div class="button-box" (click)="storeValue(4)">4</div>
+        <div class="button-box" (click)="storeValue(5)">5</div>
+        <div class="button-box" (click)="storeValue(6)">6</div>
+      </div>
+      <div class="block-3">
+        <div class="button-box" (click)="storeValue(7)">7</div>
+        <div class="button-box" (click)="storeValue(8)">8</div>
+        <div class="button-box" (click)="storeValue(9)">9</div>
+      </div>
+      <div class="block-3">
+        <div class="button-box">X</div>
+        <div class="button-box" (click)="storeValue(0)">0</div>
+        <div class="button-box">X</div>
+      </div>
+    </div>
+    <div class="button-action">
+      <ion-button (click)="annulerAction()">ANNULER</ion-button>
+      <ion-button (click)="validerNouveauPin()">SAUVEGARDER</ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -11,15 +11,17 @@ import { Observable } from 'rxjs';
 import { Result } from 'src/app/MODELS/Results';
 import { environment } from 'src/environments/environment';
 import { Events } from '@ionic/angular';
+import { CommunFunction } from '../../TOOLS/FUNCTIONS/communFunctions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurService {
+  
   private baseUrl = `${environment.apiRoot}/user`;
 
   constructor(private http: HttpClient, private localstore: LocalStorageService,
-              private events: Events) { }
+              private events: Events, private util: CommunFunction) { }
 
   /**
    * verifier si l'utilisateur Existe dans la BD
@@ -33,8 +35,10 @@ export class UtilisateurService {
 
 
   /**
-   * 
+   * stocke les parametre de connection dans la base de donnée du téléphone
    * @param connectedUser :: Utilisateur - c'est l'utilisateur a stoker dans la BD Local
+   * @returns :: Comme on est a peu pret sur que l'operation nechouera jamais , on ne renvoie rien
+   * mais pour la securité on devra gerer cet aspect la 
    */
   storeConnectedUserInLocalStorage(state: boolean, connectedUser: object): void {
     const objectToStore = {
@@ -44,7 +48,15 @@ export class UtilisateurService {
     this.events.publish('user:isLogged', state ? connectedUser : null);
   }
 
-  storeConsumptionInLocalStorage(consumptions: Consumption[]): void {
-    this.localstore.setObject(CONSUMPTIONS, consumptions);
+  /**
+   * Modification du Mot de passe 
+   * @param nouveauMotDePasse : string represente le nouveau mot de passe de l'utilisateur
+   * @returns :: Promise<boolean> 
+   */
+  modifyThisUserPassword(nouveauMotDePasse: string): Promise<boolean> {
+    return new Promise (resolved => {
+      this.util.showPopupMessage(`il faut implementer l'API de modification du Mot de Pase. aller dans la page UtilsiateurService`);
+      resolved(true);
+    });
   }
 }

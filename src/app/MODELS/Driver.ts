@@ -2,8 +2,7 @@ export class Driver {
     public id?: string;
     public email?: string;
     public tel?: number;
-    public login?: string;
-    public fullName?: string;
+    public full_name?: string;
     public pin?: string;
     public idDossier?: number;
     public profil?: string;

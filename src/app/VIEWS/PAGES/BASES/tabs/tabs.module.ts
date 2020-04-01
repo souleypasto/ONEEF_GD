@@ -32,6 +32,18 @@ const routes: Routes = [
         path: 'historique',
         loadChildren: () => import('../../METIERS/historique/historique.module').then(m => m.HistoriquePageModule)
       },
+      {
+        path: 'modif-password',
+        loadChildren: () => import('../../LOGGED/modif-password/modif-password.module').then(m => m.ModifPasswordPageModule)
+      },
+      {
+        path: 'change-pin',
+        loadChildren: () => import('../../LOGGED/change-pin/change-pin.module').then(m => m.ChangePinPageModule)
+      },
+      { 
+        path: 'distribution', 
+        loadChildren: () => import('../../METIERS/distribution/distribution.module').then(m => m.DistributionPageModule) },
+
     ]
   },
   {

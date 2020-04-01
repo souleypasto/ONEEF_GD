@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { MenuPage } from './menu.page';
+import { ModifPasswordPage } from '../../LOGGED/modif-password/modif-password.page';
+import { ModifPasswordPageModule } from '../../LOGGED/modif-password/modif-password.module';
 
 const routes: Routes = [
   {
@@ -30,7 +32,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
   declarations: [MenuPage]
 })

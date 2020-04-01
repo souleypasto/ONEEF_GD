@@ -1,20 +1,14 @@
 <app-header [titre]="'HISTORIQUE TRANSACTION'" [soustitre]="'le sous-titre de la page'"
-  [defaultParenUrl]="'tabs'"></app-header>
+  [defaultParenUrl]="'menu'"></app-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>
-      Historique de consommation
-    </ion-list-header>
-    <ion-item *ngFor="let consumption of consumptions">
-      <ion-label>
-        <h2>
-          {{consumption.pompiste_name}}
-        </h2>
-        <p>
-          {{consumption.car_brand}}
-        </p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  
+  <ng-container *ngFor="let consumption of listconsumptions">
+    <app-consumption [consumption]="consumption"></app-consumption>
+  </ng-container>
 </ion-content>
+<ion-fab vertical="bottom" horizontal="end">
+  <ion-fab-button (click)="openNewConsomationPage()">
+    <ion-icon name="add-circle"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

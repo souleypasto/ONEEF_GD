@@ -1,0 +1,23 @@
+<ion-card>
+  <div class="info-line">
+    <div class="title-info" style="font-weight: bold; ">CHAUFFEUR: </div>
+    <div class="info-sepsep" style="font-weight: bold; ">{{driverName ? driverName : 'CHAUFFEUR'}}</div>
+  </div>
+  <div class="info-line">
+    <div class="title-info">VEHICULE </div>
+    <div class="info-sepsep">{{consumption.car_brand}} </div>
+  </div>
+  <div class="info-line">
+    <div class="title-info">POMPE:</div>
+    <div class="info-sepsep">{{consumption.pump_label + '<<' + consumption.start_index_pompe + ','
+       + consumption.end_index_pompe + '>>'}}</div>
+  </div>
+  <div class="info-line">
+    <div class="title-info" style="font-weight: bold; ">KILOMETRAGE APRES CONSOMATION : </div>
+    <div class="info-sepsep">{{consumption.new_odometer}} </div>
+  </div>
+  <div class="info-line">
+    <div class="title-info" style="font-weight: bold; ">Date: </div>
+    <div class="info-sepsep">{{consumption.created}}</div>
+  </div>
+</ion-card>

@@ -5,6 +5,8 @@ import { UtilisateurService } from 'src/app/SERVICES/UTILISATEUR/utilisateur.ser
 import { Utilisateur } from 'src/app/MODELS/Utilisateur';
 import { CommunFunction } from 'src/app/TOOLS/FUNCTIONS/communFunctions';
 import { PompeService } from '../../../../SERVICES/POMPE/pompe.service';
+import { ConsumptionsService } from 'src/app/SERVICES/CONSUMPTIONS/consumptions.service';
+import { VehiculeService } from '../../../../SERVICES/VEHICULE/vehicule.service';
 
 @Component({
   selector: 'app-login-register',
@@ -19,7 +21,8 @@ export class LoginRegisterPage implements OnInit {
   login: string;
   password: string;
 
-  constructor(private util: CommunFunction, private userService: UtilisateurService, private pumpGen: PompeService) { }
+  constructor(private util: CommunFunction, private userService: UtilisateurService, private pumpGen: PompeService,
+              private consuService: ConsumptionsService, private vehiculeService: VehiculeService) { }
 
   ngOnInit() {
     this.initClassVar();
@@ -33,18 +36,17 @@ export class LoginRegisterPage implements OnInit {
 
   /**
    * Permet de se connecter a l'application en utlisant le login et le mot de pase 
-   * @returns:: nothings
+   * @returns :: nothings
    */
   seConnecter(): void {
     this.isDataWellFilled().then((resultCheck: boolean) => {
       if (resultCheck) {
         this.userService.seConnecter(this.login, this.password).subscribe(userFounded => {
           if (userFounded) {
-            console.log(userFounded);
             this.storeThingsInLocalStorage(userFounded.data);
             this.util.redirectWithRouteQuery(`pincode`);
           } else {
-            this.util.showPopupMessage(`cet Utilisateur nexiste pas `);
+            this.util.showPopupMessage(`cet Utilisateur n'existe pas `);
           }
         });
       } else {
@@ -54,12 +56,14 @@ export class LoginRegisterPage implements OnInit {
   }
 
   /**
-   * sauvegarde les données utile dans la mémoire interne
+   * sauvegarde les données utiles dans la mémoire interne
+   * @param dataUser :: Data - les données de l'utilisateur recupérer de la base de donnée 
    */
   storeThingsInLocalStorage(dataUser: Data): void {
-    this.userService.storeConnectedUserInLocalStorage(true, dataUser);
+    this.userService.storeConnectedUserInLocalStorage(true, dataUser.user);
+    this.vehiculeService.storeVehiculesInLocalStorage(dataUser.cars);
     this.pumpGen.storeThisUserPompInLocalStorage(dataUser.pompes);
-    this.userService.storeConsumptionInLocalStorage(dataUser.consommation);
+    this.consuService.storeConsumptionInLocalStorage(dataUser.consommation);
   }
 
   /**
@@ -68,7 +72,7 @@ export class LoginRegisterPage implements OnInit {
    */
   isDataWellFilled(): Promise<boolean> {
     return new Promise(resultCheck => {
-      if(this.login && this.login !== '' && this.password && this.password !== '') {
+      if (this.login && this.login !== '' && this.password && this.password !== '') {
         resultCheck(true);
       } else {
         resultCheck(false);

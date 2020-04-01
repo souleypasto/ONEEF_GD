@@ -1,0 +1,60 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container .cadran-buttn {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.container .cadran-buttn .cadran {
+  width: 60px;
+  height: 60px;
+  background: red;
+  margin-left: 5px;
+}
+.container .button-carried {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container .button-carried .block-3 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+.container .button-carried .block-3 .button-box {
+  width: 80px;
+  height: 80px;
+  background: black;
+  margin-left: 5px;
+  color: white;
+  font-size: 35px;
+  text-transform: uppercase;
+  font-family: Lato;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container .button-action {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.container .button-action ion-button {
+  width: 10rem;
+}

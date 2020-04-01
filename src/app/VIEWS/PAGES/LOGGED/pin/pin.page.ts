@@ -8,9 +8,19 @@ import { CommunFunction } from '../../../../TOOLS/FUNCTIONS/communFunctions';
 })
 export class PinPage implements OnInit {
 
+  isToChangePin: boolean;
+
   constructor(private util: CommunFunction) { }
 
   ngOnInit() {
+    this.initClassVar();
+  }
+
+  /**
+   * initialise les variables de la clase
+   */
+  initClassVar() {
+    this.isToChangePin = false;
   }
 
   /**
