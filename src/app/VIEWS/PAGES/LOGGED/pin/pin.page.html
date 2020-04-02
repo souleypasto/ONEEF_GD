@@ -2,12 +2,12 @@
     <div class="container">
         <h5>Entrez votre conde PIN pou continuer.</h5>
       <div class="cadran-buttn">
-        <div class="cadran"></div>
-        <div class="cadran"></div>
-        <div class="cadran"></div>
-        <div class="cadran"></div>
-        <div class="cadran"></div>
-        <div class="cadran"></div>
+        <div class="cadran"><div id="checkId1"></div></div>
+        <div class="cadran"><div id="checkId2"></div></div>
+        <div class="cadran"><div id="checkId3"></div></div>
+        <div class="cadran"><div id="checkId4"></div></div>
+        <div class="cadran"><div id="checkId5"></div></div>
+        <div class="cadran"><div id="checkId6"></div></div>
       </div>
       <div class="button-carried">
         <div class="block-3">
@@ -26,13 +26,13 @@
           <div class="button-box" (click)="storeValue(9)">9</div>
         </div>
         <div class="block-3">
-          <div class="button-box">X</div>
+          <div class="button-box" (click)="deleteValue()">Del</div>
           <div class="button-box" (click)="storeValue(0)">0</div>
           <div class="button-box">X</div>
         </div>
       </div>
       <div class="button-action">
-        <div class="button" (click)="validerNouveauPin()">VALIDER</div>
+        <ion-button class="button" [disabled]="buildNewPing.length !== 6" (click)="validerNouveauPin()">VALIDER</ion-button>
       </div>
     </div>
   </ion-content>

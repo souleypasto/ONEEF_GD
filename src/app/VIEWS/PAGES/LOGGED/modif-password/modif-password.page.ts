@@ -48,15 +48,17 @@ export class ModifPasswordPage implements OnInit {
    */
    modifiedPasswor() {
     this.isDataWellFilled().then((resolved: boolean) => {
-      if (resolved && this.user) {
-        this.userServ.updateUserPassword(this.user.email, this.newPassword).subscribe(resulOperation => {
-          if (resulOperation) {
-            this.util.showPopupMessage('Modification Mot de passe Reussi');
-            this.closeThisModal();
-          } else {
-            this.util.showPopupMessage('Une erreur Est Survenue veuillez reesayez');
-          }
-        });
+      if (resolved) {
+        this.userServ.getConnectedUser().then((user: Utilisateur) => {
+          this.userServ.updateUserPassword(user.email, this.newPassword).subscribe(resulOperation => {
+            if (resulOperation) {
+              this.util.showPopupMessage('Verifier lAPI. il semble ne pas marché aussi ');
+              this.closeThisModal();
+            } else {
+              this.util.showPopupMessage('Une erreur Est Survenue veuillez reesayez');
+            }
+          });
+        })
       } else {
         this.util.showPopupMessage('les données ne sont pas bien rempli');
       }

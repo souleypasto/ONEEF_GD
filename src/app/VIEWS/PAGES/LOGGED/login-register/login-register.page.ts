@@ -44,7 +44,7 @@ export class LoginRegisterPage implements OnInit {
         this.userService.seConnecter(this.login, this.password).subscribe(userFounded => {
           if (userFounded) {
             this.storeThingsInLocalStorage(userFounded.data);
-            this.util.redirectWithRouteQuery(`pincode`);
+            this.util.redirectWithRouteQuery(`pincode`, userFounded.data.user.pin);
           } else {
             this.util.showPopupMessage(`cet Utilisateur n'existe pas `);
           }
