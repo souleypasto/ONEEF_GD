@@ -75,7 +75,9 @@ export class CommunFunction {
     const loading = await this.showPresentVarLoader('redirection...');
     loading.present();
     const naviQuery: NavigationExtras = {
-      queryParams: queryParamsObject
+      queryParams: {
+        params: JSON.stringify(queryParamsObject)
+      }
     };
     if (queryParamsObject === null) {
       this.router.navigate([url]).then(() => {

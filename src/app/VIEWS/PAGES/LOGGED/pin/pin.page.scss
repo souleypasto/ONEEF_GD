@@ -15,9 +15,14 @@
         .cadran {
             width: 35px;
             height: 35px;
-            background:#0055a4;
-            border: 6px rgba(219, 211, 211, 0.932) solid;
+            background:rgba(218, 216, 216, 0.932);
             margin: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 7px;
+
         }
     }
     .button-carried {
@@ -59,4 +64,5 @@
     cursor: pointer;
 }
 }
+
 

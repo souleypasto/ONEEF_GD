@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommunFunction } from '../../../../TOOLS/FUNCTIONS/communFunctions';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pin',
@@ -8,10 +9,12 @@ import { CommunFunction } from '../../../../TOOLS/FUNCTIONS/communFunctions';
 })
 export class PinPage implements OnInit {
 
-  buildNewPing: boolean;
+  buildNewPing: string;
+  pinUserCOde: string;
 
 
-  constructor(private util: CommunFunction) { }
+  constructor(private route: ActivatedRoute,  private util: CommunFunction) {
+   }
 
   ngOnInit() {
     this.initClassVar();
@@ -21,30 +24,81 @@ export class PinPage implements OnInit {
    * initialise les variables de la clase
    */
   initClassVar() {
-    this.buildNewPing = false;
+    this.buildNewPing = '';
+    this.route.queryParams.subscribe(paramGetted => {
+      this.pinUserCOde = JSON.parse(paramGetted.params);
+    });
   }
 
   /**
    * redirriger vers la page principale de l'application 
    */
   goIntoApplication() {
+    this.util.showPopupMessage('Bienvenue');
     this.util.redirectWithRouteQuery(`menu`);
   }
 
-  /***
-   * operation du Pin
+
+  /**
+   * permet de verifier la validité du code pin enterer par l'utilisateur 
+   * @retunrs :: nothiings
    */
-  annulerAction() {
-    this.util.redirectWithRouteQuery(`menu`);
+  validerNouveauPin(): void {
+    if (this.pinUserCOde === this.buildNewPing) {
+      this.goIntoApplication();
+    } else {
+      this.util.showPopupMessage('COde pin non valide ');
+    }
   }
 
   /**
-   *
+   * suuprmier une valeur entrer au clavier 
    */
-  validerNouveauPin(): void {
-    const newPin = this.buildNewPing;
-    // TO DO
-    this.annulerAction();
+  deleteValue(): void {
+    if (this.buildNewPing.length === 0) {
+      this.util.showPopupMessage('Veuillez saisir votre pin');
+    }
+    if (this.buildNewPing.length > 0) {
+      const actualsize = this.buildNewPing.length;
+      const newWorld = this.buildNewPing.substring(0, (actualsize - 1));
+      this.buildNewPing = newWorld;
+      this.unCheckScreen(this.buildNewPing.length + 1);
+    }
+  }
+
+  /**
+   * 
+   */
+  storeValue(value: number): void {
+    const actualSize = this.buildNewPing.length;
+    if (actualSize < 6) {
+      this.buildNewPing = this.buildNewPing + value.toString();
+      this.checkScreen(actualSize + 1);
+    } else {
+      this.util.showPopupMessage('Nombre de pin Atteint!!! veuillez Valider ');
+    }
+  }
+
+  /**
+   * 
+   */
+  checkScreen(valueScreen: number) {
+    const screnId = document.getElementById('checkId' + valueScreen);
+    screnId.style.width = '100%';
+    screnId.style.height = '100%';
+    screnId.style.background = '#0055a4';
+    screnId.style.transition = '200ms';
+    
+  }
+
+  /**
+   * 
+   */
+  unCheckScreen(valueScreen: number) {
+    const screnId = document.getElementById('checkId' + valueScreen);
+    screnId.style.transition = '200ms';
+    screnId.style.width = '0';
+    screnId.style.height = '0';
   }
 
 }
