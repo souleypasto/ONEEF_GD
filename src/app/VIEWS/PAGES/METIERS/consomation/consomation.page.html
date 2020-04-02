@@ -5,7 +5,6 @@
   <h4>Nouvelle Consommation</h4>
   <div class="container">
     <form class="form-block">
-      <div class ="row">
         <div>
           <ion-label>Pompe:</ion-label>
           <div class="form-group">
@@ -21,18 +20,17 @@
                 </ion-label>
               </ion-select-option>
             </ion-select>
+          </div>
         </div>
-          </div>
-          <div>
-              <ion-label>Shift:</ion-label>
-              <div class="form-group" >
-                <ion-select (ionChange)="onShiftSelected()" name="shift" [(ngModel)]="hoursAvailable" placeholder="Shift">
-                  <ion-select-option> NUIT </ion-select-option>
-                  <ion-select-option> JOUR </ion-select-option>
-                </ion-select>
-              </div>
-          </div>
-      </div>
+        <div>
+            <ion-label>Shift:</ion-label>
+            <div class="form-group" >
+              <ion-select (ionChange)="onShiftSelected()" name="shift" [(ngModel)]="hoursAvailable" placeholder="Shift">
+                <ion-select-option> NUIT </ion-select-option>
+                <ion-select-option> JOUR </ion-select-option>
+              </ion-select>
+            </div>
+        </div>
       <div>
         <ion-label>Types de Carburant</ion-label>
         <div class="form-group">
@@ -43,72 +41,71 @@
               </ion-select>
         </div>
       </div>
-      <div class="row">
-        <div>
-          <ion-label>Véhicule:</ion-label>
-          <div class="form-group">
-              <ion-select class="form-select"
-                        (ionChange)="fullFieldDriver()"
-                        name="vehicule"
-                        [(ngModel)]="vehicule"
-                        placeholder="Choisir">
-                  <ion-select-option [value]="vehicule" *ngFor="let vehicule of listVehicules">
-                    <p>{{vehicule.marque_modele}}</p><br>
-                    <p>{{vehicule.current_odometer + 'Km' + vehicule.immatriculation}}</p>
-                  </ion-select-option>
-                </ion-select>
-          </div>
-          
+      <div>
+        <ion-label>Véhicule:</ion-label>
+        <div class="form-group">
+            <ion-select class="form-select"
+                      (ionChange)="fullFieldDriver()"
+                      name="vehicule"
+                      [(ngModel)]="vehicule"
+                      placeholder="Choisir">
+                <ion-select-option [value]="vehicule" *ngFor="let vehicule of listVehicules">
+                  <p>{{vehicule.marque_modele}}</p><br>
+                  <p>{{vehicule.current_odometer + 'Km' + vehicule.immatriculation}}</p>
+                </ion-select-option>
+              </ion-select>
         </div>
+      </div> 
+      <div class="row">
         <div>
           <ion-label>Chauffeur :</ion-label>
           <div class="form-group">
               <ion-input name="chauffeur" disabled [placeholder]="chauffeurName"></ion-input>
           </div>
         </div>
+        <div>
+          <ion-label>Ancienne Distance :</ion-label>
+          <div class="form-group">
+            <ion-input type="numeric" name="oldDistance" [(ngModel)]="oldDistance"></ion-input>
+          </div>
+        </div>
       </div>
       <div class="row">
-          <div>
-              <ion-label>Ancienne Distance :</ion-label>
-              <div class="form-group">
-                <ion-input type="numeric" name="oldDistance" [(ngModel)]="oldDistance"></ion-input>
-              </div>
-            </div>
-          <div>
-              <ion-label>ouvelle Distance :</ion-label>
-              <div class="form-group">
-                <ion-input type="numeric" name="newDistance" [(ngModel)]="newDistance"></ion-input>
-              </div>
-            </div>
+        <div>
+          <ion-label>Nouvelle Distance :</ion-label>
+          <div class="form-group">
+            <ion-input type="numeric" name="newDistance" [(ngModel)]="newDistance"></ion-input>
+          </div>
+        </div>
+        <div>
+          <ion-label>Mesure / début :</ion-label>
+          <div class="form-group">
+            <ion-input type="numeric"  name="startIndex" [(ngModel)]="startIndex"></ion-input>
+          </div>
+        </div>
       </div>
       <div class="row">
-          <div>
-              <ion-label>Mesure / début :</ion-label>
-              <div class="form-group">
-                <ion-input type="numeric"  name="startIndex" [(ngModel)]="startIndex"></ion-input>
-              </div>
-            </div>
-            <div>
-                <ion-label>Mesure / Fin :</ion-label>
-                <div class="form-group">
-                  <ion-input type="numeric" name="endIndex" [(ngModel)]="endIndex"></ion-input>
-                </div>
-            </div>
-            <div>
-              <ion-label>Dépensé :</ion-label>
-              <div class="form-group">
-                <ion-input type="numeric" name="mesure" disabled [placeholder]="mesure"></ion-input>
-              </div>
-            </div>
+        <div>
+          <ion-label>Mesure / Fin :</ion-label>
+          <div class="form-group">
+            <ion-input type="numeric" name="endIndex" [(ngModel)]="endIndex"></ion-input>
+          </div>
+        </div>
+        <div>
+          <ion-label>Dépensé :</ion-label>
+          <div class="form-group">
+            <ion-input type="numeric" name="mesure" disabled [placeholder]="mesure"></ion-input>
+          </div>
+        </div>
       </div>
       <div class="row">
-              <div class="button"> 
-                <ion-icon  name="photo"></ion-icon>Ajouter une Photo
-              </div>
-            
-            <button disabled="true" class="validate">
-              <div (click)="processStoreConsomation()">Valider Opération</div>
-            </button>
+        <div class="button"> 
+          <ion-icon  name="photo"></ion-icon>Ajouter une Photo
+        </div>
+        
+        <button disabled="true" class="validate">
+          <div (click)="processStoreConsomation()">Valider Opération</div>
+        </button>
       </div>
       
     </form>

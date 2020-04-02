@@ -33,20 +33,29 @@
     }
 
     ion-select{
-        padding-left: 2rem;
-        padding-right: 3rem;
         flex-wrap: wrap;
     }
 
     .button{
-        background-color: rgb(233, 101, 101);
+        
         font-size: 0.7rem;
-        font-weight: 500;
+        
     }
     .validate{
         background-color: #0055a4;
         border-radius: 5px;
         padding: 0.5rem;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #e2dfdf;
+        font-size: 0.8rem;
+        cursor: pointer;
+    }
+
+    .button{
+        background-color: rgb(233, 101, 101);
+        border-radius: 5px;
+        padding: 0.7rem;
+        font-weight: 500;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         color: #e2dfdf;
         font-size: 0.8rem;

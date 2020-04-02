@@ -51,6 +51,7 @@ export class DistributionPage implements OnInit {
     private events: Events) { }
 
   ngOnInit() {
+    this.defaultParentUrl = `menu`;
   }
 
 /**
