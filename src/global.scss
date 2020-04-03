@@ -83,21 +83,3 @@ h5{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 300;
 }
-
-.button-box {
-    width: 80px;
-    height: 80px;
-    background: white;
-    margin-left: 5px;
-    color: dimgray;
-    font-size: 35px;
-    text-transform: uppercase;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: dimgray 1px 0px 2px 0px;
-    border-radius: 2px;
-    cursor: pointer;
-}

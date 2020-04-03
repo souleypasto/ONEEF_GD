@@ -34,6 +34,8 @@ export class ConsomationPage implements OnInit {
   imagePath: string;
   shift: string;
 
+  imagePompe: string;
+
   //
   // Variable selection dans le Formulaire
   //
@@ -143,7 +145,7 @@ export class ConsomationPage implements OnInit {
     this.checkIfDataIsWellFilled().then((resultCheck: boolean) => {
       if (resultCheck) {
         this.buildObjectConsumpTion().then((consumptionBuild: Consumption) => {
-          this.consServ.sauvegarderConnection(consumptionBuild).then((resultOperation: boolean) => {
+          this.consServ.sauvegardeConsomation(consumptionBuild).then((resultOperation: boolean) => {
             // a sauvegarde s'est bien passé . 
             // on redirrige vers la liste de consommation de ce pompiste 
             if (resultOperation) {
@@ -156,6 +158,8 @@ export class ConsomationPage implements OnInit {
             }
           });
         });
+      } else {
+        this.util.showPopupMessage(`Veuillez remplir tous les Champs`);
       }
     });
   }
@@ -170,7 +174,12 @@ export class ConsomationPage implements OnInit {
   checkIfDataIsWellFilled(): Promise<boolean> {
     return new Promise (resolved => {
       // TODO
-      resolved(true);
+      if (this.chosedPump && this.hoursAvailable && this.typeCarburant && this.oldDistance && this.newDistance
+        && this.startIndex && this.endIndex && this.imagePompe !== '') {
+        resolved(true);
+      } else {
+        resolved(false);
+      }
     });
   }
 
@@ -182,12 +191,12 @@ export class ConsomationPage implements OnInit {
   buildObjectConsumpTion(): Promise<Consumption> {
     return new Promise (resolved => {
       const newConsObject: Consumption = {
-        idPompe : this.chosedPump.id,
+        id_pompe : this.chosedPump.id,
+        id_pompiste: this.idPompiste,
         car_brand: '',
         created: this.util.getCurrentTimeDate(),
-        dateUnic: '',
+        dateUnic: this.util.getCurrentTimeDate().toString(),
         end_index_pompe: this.endIndex.toString(),
-        id_pompiste: this.idPompiste,
         id_vehicule: Number(this.vehicule.id),
         new_odometer: this.newDistance.toString(),
         pompiste_name: this.chauffeurName,
@@ -199,8 +208,11 @@ export class ConsomationPage implements OnInit {
     });
   }
 
+  /**
+   * 
+   */
   onShiftSelected() {
-    this.util.showPopupMessage('shift changer');
+    // this.util.showPopupMessage('shift changer');
   }
 
 }

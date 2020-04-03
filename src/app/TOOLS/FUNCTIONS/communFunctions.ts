@@ -222,7 +222,7 @@ export class CommunFunction {
    * @param dateTIme
    * @retuns string
    */
-  getHoursFromDateTImeString(dateTIme?: any) {
+  getHoursFromDateTImeString(dateTIme?: any): string {
     const d = !dateTIme ? new Date() : new Date(dateTIme);
     const hours = d.getHours();
     const min = d.getMinutes();
@@ -350,31 +350,6 @@ export class CommunFunction {
       const currentDateTimeAsTab = currentDateTime.split('-');
       const currentDataYear = +currentDateTimeAsTab[0] + 1;
       return currentDataYear + '-' + currentDateTimeAsTab[1] + '-' + currentDateTimeAsTab[2];
-  }
-
-  /**
-   *
-   * @param articleToSave
-   */
-  ajoutterArticleAuPanier(articleToSave: any) {
-    let panierTab = [];
-    this.storage.get('panier').then(resultSearch => {
-        if (resultSearch !== undefined && resultSearch !== null) {
-          panierTab = resultSearch;
-        }
-      }).then(() => {
-        const lentgh = panierTab.length;
-        const objectPanier = {
-          article: articleToSave,
-          idPanier: '00PANI' + lentgh
-        };
-        panierTab.push(objectPanier);
-      })
-      .finally(() => {
-        this.storage.set('panier', panierTab).finally(() => {
-          this.showUserMessageToast('sauevgarder dans le panier');
-        });
-      });
   }
 
 }

@@ -1,6 +1,9 @@
 <ion-content>
     <div class="container">
-        <h5>Entrez votre conde PIN pou continuer.</h5>
+      <div class="blog-img">
+        <img src="assets/icon/logo.jpg">
+      </div>
+      <h5>Entrez votre code PIN pour continuer.</h5>
       <div class="cadran-buttn">
         <div class="cadran"><div id="checkId1"></div></div>
         <div class="cadran"><div id="checkId2"></div></div>
@@ -30,9 +33,6 @@
           <div class="button-box" (click)="storeValue(0)">0</div>
           <div class="button-box">X</div>
         </div>
-      </div>
-      <div class="button-action">
-        <ion-button class="button" [disabled]="buildNewPing.length !== 6" (click)="validerNouveauPin()">VALIDER</ion-button>
       </div>
     </div>
   </ion-content>

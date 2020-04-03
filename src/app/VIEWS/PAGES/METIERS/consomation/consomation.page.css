@@ -5,15 +5,14 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 5%;
+  padding: 0.5rem;
+  box-shadow: dimgray 1px 0px 2px 0px;
 }
 .container .form-block {
   width: 100%;
   max-width: 35rem;
-  padding: 5%;
+  padding: 0.5rem;
   position: relative;
-  overflow: scroll;
-  background: #e3e3e3;
 }
 .container .form-block ion-item {
   margin-top: 1%;
@@ -33,8 +32,28 @@
 .container .form-block ion-buttons ion-button {
   width: calc(50% - 5px);
 }
-.container .row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.container ion-select {
+  flex-wrap: wrap;
+}
+.container .button {
+  font-size: 0.7rem;
+}
+.container .validate {
+  background-color: #0055a4;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #e2dfdf;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.container .button {
+  background-color: #e96565;
+  border-radius: 5px;
+  padding: 0.7rem;
+  font-weight: 500;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #e2dfdf;
+  font-size: 0.8rem;
+  cursor: pointer;
 }

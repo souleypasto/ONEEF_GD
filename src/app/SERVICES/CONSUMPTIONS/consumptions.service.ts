@@ -46,7 +46,7 @@ export class ConsumptionsService {
    * @returns :: Promessee booleann qui dit si l'operation s'est bien passé ou pas
    *
    */
-  sauvegarderConnection(consumption: Consumption): Promise<boolean> {
+  sauvegardeConsomation(consumption: Consumption): Promise<boolean> {
     return new Promise (resolved => {
       this.addConsumption(consumption).subscribe((result: Consumption) => {
         if (result) {

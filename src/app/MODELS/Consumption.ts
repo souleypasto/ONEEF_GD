@@ -1,15 +1,15 @@
 export class Consumption {
-  public id?: number;
-  public id_pompiste?: number;
-  public created?: Date;
-  public idPompe?: number;
-  public id_vehicule?: number;
-  public typeProduit?: string;
-  public new_odometer?: string;
-  public start_index_pompe?: string;
-  public end_index_pompe?: string;
-  public dateUnic?: string;
-  public pump_label?: string;
-  public car_brand?: string;
-  public pompiste_name?: string;
+  id?: number;
+  id_pompiste?: number;
+  created?: Date;
+  id_pompe?: number;
+  id_vehicule?: number;
+  typeProduit?: string;
+  new_odometer?: string;
+  start_index_pompe?: string;
+  end_index_pompe?: string;
+  dateUnic?: string;
+  pump_label?: string;
+  car_brand?: string;
+  pompiste_name?: string;
 }

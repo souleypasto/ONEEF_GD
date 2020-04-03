@@ -47,7 +47,7 @@ export class PinPage implements OnInit {
     if (this.pinUserCOde === this.buildNewPing) {
       this.goIntoApplication();
     } else {
-      this.util.showPopupMessage('COde pin non valide ');
+      this.util.showPopupMessage('Code pin non valide ');
     }
   }
 
@@ -74,6 +74,9 @@ export class PinPage implements OnInit {
     if (actualSize < 6) {
       this.buildNewPing = this.buildNewPing + value.toString();
       this.checkScreen(actualSize + 1);
+      if ((actualSize + 1) === 6) {
+        this.validerNouveauPin();
+      }
     } else {
       this.util.showPopupMessage('Nombre de pin Atteint!!! veuillez Valider ');
     }
@@ -85,10 +88,9 @@ export class PinPage implements OnInit {
   checkScreen(valueScreen: number) {
     const screnId = document.getElementById('checkId' + valueScreen);
     screnId.style.width = '100%';
-    screnId.style.height = '100%';
-    screnId.style.background = '#0055a4';
+    screnId.style.height = '8px';
+    screnId.style.background = '#0f8694';
     screnId.style.transition = '200ms';
-    
   }
 
   /**

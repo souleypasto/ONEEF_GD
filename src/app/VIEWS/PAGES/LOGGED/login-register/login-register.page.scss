@@ -5,36 +5,90 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    background: #dfdfdf;
+    .copiright-block {
+        width: 100%;
+        color: gray;
+        text-align: center;
+        margin-top: 0%;
+        font-size: 11px;
+    }
+
+    .decorate {
+        position: absolute;
+        top: 0;
+        height: 55%;
+        width: 100%;
+        background: #3e3636;
+        z-index: 0;
+    }
+
+    .logoBLock {
+        width: 7rem;
+        height: 7rem;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        animation: downdown;
+        animation-duration: 1s;
+        z-index: 1;
+        overflow: hidden;
+        transition: 400ms;
+        img {
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+
     ion-card {
+        z-index: 1;
         text-align: center;
         padding: 1rem;
-        width: 23rem;;
+        width: 21rem;
+        background: white;
+
+        ion-card-header {
+            ion-card-title {
+                text-align: left;
+            }
+
+            .border-title {
+                width: 22%;
+                border-bottom: 3.5px solid #f6943d;
+            }
+        }
+        ion-card-content {
+            ion-button {
+                --background: linear-gradient(to bottom, #0261b9 0%,#011c36 100%);
+                font-family: Lato;
+                font-weight: bold;
+                width: 93%;
+            }
+            ion-input {
+                ion-icon {
+                    position: absolute;
+                    right: 2%;
+                    font-size: 1.5rem;
+                }
+            }
+        }
     }
-    ion-item{ 
+
+    ion-item {
         border-color: #e2dfdf;
         border: 1px solid #e2dfdf !important;
         border-radius: 5px;
         margin: 1rem;
-        ion-label{ 
+
+        ion-label {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             color: dimgrey;
             font-size: 1.2rem;
         }
     }
-    ion-button{
-        background-color: none !important;
-        border-radius: 5px;
 }
 
-
-.button{
-    background-color: #0055a4;
-    border-radius: 5px;
-    padding: 0.7rem;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: #e2dfdf;
-    font-size: 0.8rem;
-    cursor: pointer;
-}
-
-}
+@keyframes downdown {
+    from {margin-bottom: 122px;}
+    to {margin-bottom: 30px;}
+  }

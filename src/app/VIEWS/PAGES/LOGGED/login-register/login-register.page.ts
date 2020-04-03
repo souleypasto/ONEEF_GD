@@ -21,6 +21,12 @@ export class LoginRegisterPage implements OnInit {
   login: string;
   password: string;
 
+  //
+  // variable de la vue : Just to UPdate View 
+  //
+  typePassWord: string;
+  iconPpassword: string;
+
   constructor(private util: CommunFunction, private userService: UtilisateurService, private pumpGen: PompeService,
               private consuService: ConsumptionsService, private vehiculeService: VehiculeService) { }
 
@@ -32,6 +38,22 @@ export class LoginRegisterPage implements OnInit {
    * initisaliser les variables de l classe
    */
   initClassVar() {
+    this.typePassWord = 'password';
+    this.iconPpassword = 'eye';
+  }
+
+  /**
+   * Cette fonction permet de montrer ou de Cacher le Mot de passe Utilisateur 
+   */
+  showOrHidePassword(): void {
+    debugger;
+    if (this.typePassWord === 'password') {
+      this.typePassWord = 'text';
+      this.iconPpassword = 'eye-off';
+    } else {
+      this.typePassWord = 'password';
+      this.iconPpassword = 'eye-off';
+    }
   }
 
   /**

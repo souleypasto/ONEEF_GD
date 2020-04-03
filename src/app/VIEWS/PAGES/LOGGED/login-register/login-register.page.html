@@ -1,8 +1,13 @@
 <ion-content>
   <div class="container-log-page">
+    <div class="decorate"></div>
+    <div class="logoBLock" id="logoBLockId">
+      <img src="assets/icon/logo.jpg">
+    </div>
     <ion-card>
       <ion-card-header>
-        <div class="title">Connexion</div>
+        <ion-card-title>Se Connecter</ion-card-title>
+        <div class="border-title"></div>
       </ion-card-header>
       <ion-card-content>
         <form>
@@ -10,15 +15,16 @@
             <ion-input type="text" name="login" [(ngModel)]="login" placeholder="Login"></ion-input>
           </div>
           <div class="form-group">
-            <ion-input type="password" name="password" [(ngModel)]="password" placeholder="Mot de passe"></ion-input>
+            <ion-input [type]="typePassWord" name="password" [(ngModel)]="password" placeholder="Mot de passe">
+                <ion-icon (click)="showOrHidePassword()" slot="icon-only" [name]="iconPpassword"></ion-icon>
+            </ion-input>
           </div>
-          <div class="form-group">
-            <div class="button" ion-button expand="full" (click)="seConnecter()">Connexion</div>
-          </div>
-          
+          <ion-button expand="full" (click)="seConnecter()">SE CONNECTER</ion-button>
         </form>
       </ion-card-content>
     </ion-card>
+    <div class="copiright-block">
+      &copy; OLA Cameroun 2020
+    </div>
   </div>
-
 </ion-content>

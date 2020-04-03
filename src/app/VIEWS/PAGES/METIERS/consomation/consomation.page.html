@@ -99,15 +99,14 @@
         </div>
       </div>
       <div class="row">
-        <div class="button"> 
-          <ion-icon  name="photo"></ion-icon>Ajouter une Photo
+        <div class="image-file">
+          <img *ngIf="imagePompe" [src]="imagePompe"/>
         </div>
-        
-        <button disabled="true" class="validate">
-          <div (click)="processStoreConsomation()">Valider Opération</div>
-        </button>
+        <ion-input name="imagePompe" type="file" [(ngModel)]="imagePompe"></ion-input>
+        <ion-button (click)="processStoreConsomation()">
+         <ion-icon name="checkmark"></ion-icon> ENREGISTRER
+        </ion-button>
       </div>
-      
     </form>
   </div>
 </ion-content>
