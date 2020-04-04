@@ -1,10 +1,16 @@
 <!-- Template par defaut des menu -->
 <ng-container *ngIf="template === 'DEFAULT'">
   <ion-card class="menu-item" (click)="goToMenuPage()">
-    <div class="icon-image">
-      <ion-icon [name]="menu.icon"></ion-icon>
+    <ion-icon [name]="menu.icon"></ion-icon>
+    <div class="decoration">
+      <div class="icon-image">
+        <ion-icon [name]="menu.icon"></ion-icon>
+      </div>
+      <div class="name-menu">{{menu.title}}</div>
+      <div class="logo-ese">
+        <img src="assets/icon/logo.jpg">
+      </div>
     </div>
-    <div class="name-menu">{{menu.title}}</div>
   </ion-card>
 </ng-container>
 

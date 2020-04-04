@@ -1,3 +1,6 @@
+ion-content {
+  --background: #ececec;
+}
 .container-menu {
   width: 100%;
   display: flex;
@@ -5,4 +8,8 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+.sub-menu-item {
+  width: 1.5rem;
+  height: 1.5rem;
 }

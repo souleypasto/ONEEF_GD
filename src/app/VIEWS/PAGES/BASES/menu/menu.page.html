@@ -1,19 +1,19 @@
 <ion-split-pane>
   <ion-menu contentId="content">
-    <ion-header>
-      <ion-toolbar color="primary">
-        <div class="contentInformation">
-          <ion-avatar>
-            <img src="assets/images/icon_test_user.jpg">
-          </ion-avatar>
-          <ion-label class="name">{{utilisateur ? utilisateur.full_name : 'Nom de user'}}</ion-label>
-          <ion-label class="email">{{utilisateur ? utilisateur.email : 'Email de user'}}</ion-label>
-          <ion-label class="role">POMPISTE</ion-label>
+    <div class="container-lateral-menu">
+      <div class="header-info">
+        <div class="imageUser">
+          <img src="assets/images/icon_test_user.jpg">
         </div>
-      </ion-toolbar>
-    </ion-header>
+        <div class="infoUser">
+          <div class="name">{{utilisateur ? utilisateur.full_name : 'Nom de user'}}</div>
+          <div class="email">{{utilisateur ? utilisateur.email : 'Email de user'}}</div>
+          <div class="role">POMPISTE</div>
+        </div>
+      </div>
+    </div>
     <ion-content>
-     
+
       <ion-list>
         <ng-container *ngIf="addAdditionalPage">
           <ion-list-header>

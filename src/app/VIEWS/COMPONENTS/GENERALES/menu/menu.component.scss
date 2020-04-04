@@ -5,23 +5,55 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .icon-image {
+    background: white;
+    position: relative;
+    margin: 5px;
+    ion-icon {
+        width: 15rem;
+        height: 15rem;
+        color: #f96d0f1a;
+    }
+    .decoration {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        height: 40%;
+        height: 100%;
+        background: #ffffff5e;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        ion-icon {
-            width: 10rem;
-            height: 10rem;
-            color: blakc
+        z-index: 0;
+        .logo-ese {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+        }
+        .icon-image {
+            width: 100%;
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            ion-icon {
+                width: 10rem;
+                height: 10rem;
+                color: #023260;
+            }
+        }
+        .name-menu {
+            width: 100%;
+            text-align: center;
+            font-size: 11px;
+            font-family: Lato;
+            color: #f96807;
+            font-weight: bold;
         }
     }
-    .name-menu {
-        width: 100%;
-        text-align: center; 
-        font-size: 12px;
-        font-family: Lato;
-    }
+    
 }

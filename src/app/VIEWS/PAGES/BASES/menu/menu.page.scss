@@ -1,3 +1,59 @@
+ion-split-pane {
+    ion-menu {
+        .container-lateral-menu {
+            background: #221e1e;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            .header-info {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                height: 7rem;
+                background: white;
+                width: 100%;
+                padding-left: 10px;
+                .imageUser {
+                    width: 3.5rem;
+                    height: 3.5rem;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    border: 3px solid #221e1e;
+                }
+                .infoUser {
+                    padding-left: 10px;
+                    height: 3.5rem;
+                    width: calc(100% - 3.5rem);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: unset;
+                    .name {
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        text-transform: uppercase;
+                        font-size: 1.3rempx;
+                        color: #787575;
+                    }
+                    .role {
+                        font-family: Lato;
+                        font-size: .6rem;
+                        font-weight: bold;
+                    }
+                    .email {
+                        font-family: raleway;
+                        font-size: .7rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 .contentInformation {
     width: 100%;
     padding-top: 30px;

@@ -19,7 +19,7 @@ export const LIST_MENU_HOME = [{
   {
     title: 'HISTORIQUE DE CONSOMATION',
     urlPage: RACINE_URL_ONF + 'historique',
-    icon: 'barcode',
+    icon: 'archive',
     description: 'description de ce menu si ',
     level: 1,
   },
@@ -34,7 +34,7 @@ export const LIST_MENU_HOME = [{
     title: 'DEFINIR SON CODE PIN',
     subtitle: 'le sous titre du Menu si',
     urlPage: `${RACINE_URL_ONF}change-pin`,
-    icon: 'create',
+    icon: 'lock',
     description: 'description de ce menu si ',
     level: 1,
   },
