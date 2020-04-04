@@ -33,13 +33,15 @@ ion-content {
             justify-content: center;
             align-items: center;
             .cadran {
-                width: 35px;
-                background: rgba(218, 216, 216, 0.932);
+                width: 30px;
+                height: 30px;
+                border-radius: 50px;
+                background: transparent;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                margin-right: 6px;
+                margin-right: 7px;
                 border-bottom: 2px solid #f79c46;
                 div {
                     transition: 200ms;

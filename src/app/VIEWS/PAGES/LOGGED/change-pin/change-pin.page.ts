@@ -61,11 +61,11 @@ export class ChangePinPage implements OnInit {
    */
   checkScreen(valueScreen: number) {
     const screnId = document.getElementById('checkId' + valueScreen);
-    screnId.style.width = '100%';
-    screnId.style.height = '100%';
-    screnId.style.background = '#0055a4';
+    screnId.style.width = '40%';
+    screnId.style.height = '40%';
+    screnId.style.background = '#FF9800';
+    screnId.style.borderRadius = '50%';
     screnId.style.transition = '200ms';
-
   }
 
   /**

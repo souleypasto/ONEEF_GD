@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommunFunction } from '../../../../TOOLS/FUNCTIONS/communFunctions';
 import { ActivatedRoute } from '@angular/router';
+import { UtilisateurService } from '../../../../SERVICES/UTILISATEUR/utilisateur.service';
 
 @Component({
   selector: 'app-pin',
@@ -13,8 +14,8 @@ export class PinPage implements OnInit {
   pinUserCOde: string;
 
 
-  constructor(private route: ActivatedRoute,  private util: CommunFunction) {
-   }
+  constructor(private route: ActivatedRoute,  private util: CommunFunction, private userServ: UtilisateurService) {
+  }
 
   ngOnInit() {
     this.initClassVar();
@@ -34,7 +35,6 @@ export class PinPage implements OnInit {
    * redirriger vers la page principale de l'application 
    */
   goIntoApplication() {
-    this.util.showPopupMessage('Bienvenue');
     this.util.redirectWithRouteQuery(`menu`);
   }
 
@@ -46,6 +46,7 @@ export class PinPage implements OnInit {
   validerNouveauPin(): void {
     if (this.pinUserCOde === this.buildNewPing) {
       this.goIntoApplication();
+      this.userServ.storeStatusConnectionPin(true);
     } else {
       this.util.showPopupMessage('Code pin non valide ');
     }
@@ -87,9 +88,10 @@ export class PinPage implements OnInit {
    */
   checkScreen(valueScreen: number) {
     const screnId = document.getElementById('checkId' + valueScreen);
-    screnId.style.width = '100%';
-    screnId.style.height = '8px';
-    screnId.style.background = '#0f8694';
+    screnId.style.width = '40%';
+    screnId.style.height = '40%';
+    screnId.style.background = '#FF9800';
+    screnId.style.borderRadius = '50%';
     screnId.style.transition = '200ms';
   }
 

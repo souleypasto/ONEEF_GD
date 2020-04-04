@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Events } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Result } from 'src/app/MODELS/Results';
-import { CONNECTED_USER_IFO } from 'src/app/TOOLS/INITIALISATION/localStorageVar';
+import { CONNECTED_USER_IFO, CONNECTED_PIN_STATUS } from 'src/app/TOOLS/INITIALISATION/localStorageVar';
 import { environment } from 'src/environments/environment';
 import { CommunFunction } from '../../TOOLS/FUNCTIONS/communFunctions';
 import { LocalStorageService } from '../STORAGE/local-storage.service';
@@ -14,14 +14,29 @@ import { Utilisateur } from 'src/app/MODELS/Utilisateur';
 })
 export class UtilisateurService {
  
-
+ 
 
   private baseUrl = `${environment.apiRoot}/user`;
 
   constructor(private http: HttpClient, private localstore: LocalStorageService,
               private events: Events, private util: CommunFunction) {}
 
-
+  /**
+   * voici la fonction qui permet de verifier si un Utilisateur ne s'est pas deconnecté 
+   * avant de sortir de l'application 
+   * @returns Promesse booleenne
+   */
+  isUserAlwaysConnected(): Promise<boolean> {
+    return new Promise (resultChek => {
+        this.getConnectedUser().then(userInfo => {
+          if (!userInfo) {
+            resultChek(false);
+          } else {
+            resultChek(true);
+          }
+        });
+    });
+  }
 
   /**
    * permet de renvoyer l'Id de l(utilateurr connecté )
@@ -78,6 +93,19 @@ export class UtilisateurService {
     this.events.publish('user:isLogged', state ? connectedUser : null);
     if (!state) {
       this.removeAllUserStorageVarStored();
+    }
+  }
+
+  /**
+   * Cette Fonction permet de stocker l'etat d'ajout du Code pin a l'application ou pas 
+   * a chaque foi qu'on voudra entrer dans l'application si le code pin a deja été entré alors on ne l'entre plus 
+   * @param state :: boolean, di si on veux setter ou unsetter cette varaible 
+   */
+  storeStatusConnectionPin(state: boolean) {
+    if (state) {
+      this.localstore.set(CONNECTED_PIN_STATUS, true);
+    } else {
+      this.localstore.set(CONNECTED_PIN_STATUS, false);
     }
   }
 
