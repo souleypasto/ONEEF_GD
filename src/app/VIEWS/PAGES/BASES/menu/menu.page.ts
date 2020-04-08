@@ -39,6 +39,7 @@ export class MenuPage implements OnInit {
   ngOnInit() {
     this.setUserInformation();
     this.setEventListener();
+    console.log(this.pages);
   }
 
   setEventListener() {
@@ -49,6 +50,7 @@ export class MenuPage implements OnInit {
         this.addAdditionalPage = false;
       }
     });
+    console.log(this.addAdditionalPage);
   }
 
   /***

@@ -8,7 +8,9 @@ import { CommunFunction } from '../../../../TOOLS/FUNCTIONS/communFunctions';
 import { ConsumptionsService } from '../../../../SERVICES/CONSUMPTIONS/consumptions.service';
 import { Consumption } from 'src/app/MODELS/Consumption';
 import { PompisteService } from '../../../../SERVICES/POMPISTE/pompiste.service';
-import { Events } from '@ionic/angular';
+import { Events, ActionSheetController } from '@ionic/angular';
+import { File } from '@ionic-native/file/ngx';
+import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
 
 @Component({
   selector: 'app-consomation',
@@ -44,12 +46,27 @@ export class ConsomationPage implements OnInit {
 
   // 
   // AUTRES VARIABLES 
-  // 
+  //
   idPompiste: number;
   defaultParentUrl: string;
 
-  constructor(private pompisteService: PompisteService, private localStore: LocalStorageService, private util: CommunFunction,
-              private consServ: ConsumptionsService, private events: Events) {
+  croppedImagepath = '';
+  isLoading = false;
+
+  imagePickerOptions = {
+    maximumImagesCount: 1,
+    quality: 50
+  };
+
+  constructor(
+    private pompisteService: PompisteService,
+    private localStore: LocalStorageService,
+    private util: CommunFunction,
+    private camera: Camera,
+    private consServ: ConsumptionsService,
+    private file: File,
+    public actionSheetController: ActionSheetController,
+    private events: Events) {
     this.xinitVarForCurrentForm();
   }
 
@@ -213,6 +230,52 @@ export class ConsomationPage implements OnInit {
    */
   onShiftSelected() {
     // this.util.showPopupMessage('shift changer');
+  }
+
+  pickImage(sourceType) {
+    const options: CameraOptions = {
+    quality: 100,
+    sourceType: sourceType,
+    destinationType: this.camera.DestinationType.FILE_URI,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+    };
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      // let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.cropImage(imageData);
+      }, (err) => {
+      // Handle error
+      });
+
+}
+  cropImage(imageData: any) {
+    throw new Error('Method not implemented.');
+  }
+
+  async selectImage() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Select Image source',
+      buttons: [{
+        text: 'Load from Library',
+        handler: () => {
+          this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
+        }
+      },
+      {
+        text: 'Use Camera',
+        handler: () => {
+          this.pickImage(this.camera.PictureSourceType.CAMERA);
+        }
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel'
+      }
+      ]
+    });
+    await actionSheet.present();
   }
 
 }

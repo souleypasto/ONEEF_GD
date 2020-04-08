@@ -16,6 +16,8 @@ import { AppComponent } from './app.component';
 import { IonicGestureConfig } from './DIRECTIVES/ionic-gesture-config.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ModifPasswordPageModule } from './VIEWS/PAGES/LOGGED/modif-password/modif-password.module';
+import { File } from '@ionic-native/file/ngx';
+import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
 
 
 
@@ -39,6 +41,8 @@ import { ModifPasswordPageModule } from './VIEWS/PAGES/LOGGED/modif-password/mod
     NativePageTransitions, AngularFireDatabase,
     StatusBar,
     SplashScreen,
+    Camera,
+    File,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy

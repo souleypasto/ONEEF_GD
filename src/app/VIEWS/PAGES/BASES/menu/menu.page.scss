@@ -68,9 +68,14 @@ ion-split-pane {
 
 ion-list {
     height: 100%;
+    color: white;
+    background: #ffd31a;
     #desconnect {
         position: fixed;
         bottom: 0;
+    }
+    ng-container{
+        color: wite;
     }
 }
 

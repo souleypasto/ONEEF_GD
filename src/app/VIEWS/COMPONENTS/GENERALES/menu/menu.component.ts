@@ -7,7 +7,7 @@ import { CommunFunction } from '../../../../TOOLS/FUNCTIONS/communFunctions';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
- 
+
 
   //
   // Les variables 
