@@ -39,17 +39,15 @@
     background-color: none !important;
 }
 .form-group{ 
-    border-color: #e2dfdf;
-        border: 1px solid #e2dfdf !important;
+        border: 1px solid #07383d !important;
         border-radius: 5px;
-        margin: 1rem;
-        margin-left: 0;
+        margin: 0.5rem;
         min-width: 0.2rem;
         ::placeholder, ::content{ 
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            color: dimgrey;
+            font-family: raleway;
+            color: #4d433c;
             font-size: 0.8rem;
-            padding: 1rem;
+            padding: 0.5rem;
             text-align: left;
         }
 }
@@ -66,12 +64,36 @@
     flex-direction: row;
     justify-content: space-between;
 }
-
-ion-label{
-    font-size: 0.7rem;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 300;
+.row-line {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    .title-row{
+        width: 100%;
+        font-family: Lato;
+        font-size: .8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: #0055a4;
+    }
+    .row{ 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .form-group {
+            ion-input {
+                font-family: raleway;
+                font-size: 1.3rem;
+            }
+        }
+    }
 }
+
 h4{
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;

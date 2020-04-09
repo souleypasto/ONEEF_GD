@@ -10,16 +10,18 @@ ion-content {
         position: relative;
         h5 {
             font-family: raleway;
-            color: white;
+    color: white;
+    margin: 7px;
+    font-size: 14px;
         }
 
         .blog-img {
-            width: 6rem;
-            height: 6rem;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-bottom: 3%;
-            border: 3px solid darkgoldenrod;
+            width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    /* margin-bottom: 3%; */
+    border: 3px solid #fb8408;
             img {
                 width: 100%;
                 height: 100%;
@@ -68,14 +70,14 @@ ion-content {
                 justify-content: center;
                 align-items: center;
                 .button-box {
-                    width: 5rem;
-                    height: 5rem;
+                    width: 4rem;
+                    height: 4rem;
                     color: white;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    font-size: 1.5rem;
+                    font-size: 1.1rem;
                     font-family: Lato;
                     text-transform: uppercase;
                     margin: 0.2rem;

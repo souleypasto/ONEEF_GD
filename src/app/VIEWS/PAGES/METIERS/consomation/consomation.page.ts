@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../../../../SERVICES/STORAGE/local-storage.service';
 import { Pump } from 'src/app/MODELS/Pompe';
-import { LIST_USER_PUMP_STR, RACINE_URL_ONF } from 'src/app/TOOLS/INITIALISATION/initVar';
 import { CARS } from '../../../../TOOLS/INITIALISATION/localStorageVar';
 import { Vehicule } from '../../../../MODELS/Vehicule';
 import { CommunFunction } from '../../../../TOOLS/FUNCTIONS/communFunctions';
@@ -32,7 +31,7 @@ export class ConsomationPage implements OnInit {
   newDistance: number;
   startIndex: number;
   endIndex: number;
-  mesure: string;
+  mesure: number;
   imagePath: string;
   shift: string;
 
@@ -180,6 +179,20 @@ export class ConsomationPage implements OnInit {
       }
     });
   }
+
+  /**
+   * calculer l'index consommer 
+   */
+  calculateMesurePompe(typeIndex: string): void {
+    if (typeIndex === 'old') {
+      if (!this.endIndex) {
+        this.endIndex = 0;
+        this.mesure = this.startIndex;
+      }
+    } else {
+      this.mesure = this.endIndex - this.startIndex;
+    }
+  }
  
 
   /**
@@ -276,6 +289,15 @@ export class ConsomationPage implements OnInit {
       ]
     });
     await actionSheet.present();
+
+  }
+  /**
+   * annuler processus d'enregistrement dun nouvelle consomation 
+   * @param :: nothings 
+   * @returns :: Nothings 
+   */
+  annulerProcess(): void {
+    this.util.redirectWithRouteQuery(`menu`);
   }
 
 }

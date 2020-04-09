@@ -5,7 +5,7 @@ export const SUPERADMIN_XTYPE = 'SUPERADMIN';
 export const LIST_USER_PUMP_STR = 'LIST_USER_POMP';
 export const LIST_USER_CAR_STR = 'LIST_USER_CAR';
 
-export const RACINE_URL_ONF = 'menu/menu/tabs/tabs/';
+export const RACINE_URL_ONF = 'menu/menu/';
 
 
 
