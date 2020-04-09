@@ -11,6 +11,10 @@ ion-header ion-toolbar {
 ion-header ion-toolbar ion-buttons {
   align-items: flex-start;
 }
+ion-header ion-toolbar ion-buttons ion-back-button {
+  color: white;
+  margin-top: -28%;
+}
 ion-header ion-toolbar ion-buttons ion-badge {
   padding-left: 15px;
   padding-right: 15px;

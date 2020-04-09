@@ -11,50 +11,49 @@
           <div class="role">POMPISTE</div>
         </div>
       </div>
+      <div class="content-info">
+          <ion-list>
+            <ng-container *ngIf="addAdditionalPage">
+              <ion-list-header>
+                SWITCH TRANSACTION
+              </ion-list-header>
+              <ion-item (click)="openPage(page.url)" *ngFor="let page of additionalPage">
+                <ion-icon slot="start" [name]="page.icon"></ion-icon>
+                    <ion-label>
+                          {{page.title}}
+                      </ion-label>
+                <ion-icon slot="end" name="chevron"></ion-icon>
+              </ion-item>
+            </ng-container>
+            <ion-list-header>
+              PERSONAL USER MENU
+            </ion-list-header>
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
+              <ng-container *ngIf="p.type === 'page'">
+                <ion-item (click)="openPage(p.url)" routerDirection="root" [class.active-item]="selectedPath.startsWith(p.url)">
+                  <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                  <ion-label>
+                        {{p.title}}
+                    </ion-label>
+                </ion-item>
+              </ng-container>
+              <ng-container *ngIf="p.type === 'popup'">
+                <ion-item (click)="openPopupPage(p)">
+                  <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                  <ion-label>
+                        {{p.title}}
+                    </ion-label>
+                </ion-item>
+              </ng-container>
+               
+            </ion-menu-toggle>
+            <ion-item id="desconnect" (click)="setDisconnectedUser()" tappable routerLink="/loggin" routerDirection="root">
+                <ion-icon name="log-out" slot="start"></ion-icon>
+                <ion-label>Se Deconnecter</ion-label>
+            </ion-item>
+          </ion-list>
+      </div>
     </div>
-    <ion-content>
-
-      <ion-list>
-        <ng-container *ngIf="addAdditionalPage">
-          <ion-list-header>
-            SWITCH TRANSACTION
-          </ion-list-header>
-          <ion-item (click)="openPage(page.url)" *ngFor="let page of additionalPage">
-            <ion-icon slot="start" [name]="page.icon"></ion-icon>
-                <ion-label>
-                      {{page.title}}
-                  </ion-label>
-          </ion-item>
-        </ng-container>
-        
-        <ion-list-header>
-          PERSONAL USER MENU
-        </ion-list-header>
-        <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
-          <ng-container *ngIf="p.type === 'page'">
-            <ion-item (click)="openPage(p.url)" routerDirection="root" [class.active-item]="selectedPath.startsWith(p.url)">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                    {{p.title}}
-                </ion-label>
-            </ion-item>
-          </ng-container>
-          <ng-container *ngIf="p.type === 'popup'">
-            <ion-item (click)="openPopupPage(p)">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                    {{p.title}}
-                </ion-label>
-            </ion-item>
-          </ng-container>
-           
-        </ion-menu-toggle>
-        <ion-item id="desconnect" (click)="setDisconnectedUser()" tappable routerLink="/loggin" routerDirection="root">
-            <ion-icon name="log-out" slot="start"></ion-icon>
-            <ion-label>Se Deconnecter</ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-content>
   </ion-menu>
   <ion-router-outlet id="content" main></ion-router-outlet>
 </ion-split-pane>

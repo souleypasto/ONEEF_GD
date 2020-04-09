@@ -9,10 +9,11 @@ ion-content {
         justify-content: center;
         align-items: center;
         position: relative;
-        padding-top: 16%;
         h5 {
             font-family: raleway;
             color: white;
+            font-size: 13px;
+            margin: 0;
         }
 
         .blog-img {
@@ -73,14 +74,14 @@ ion-content {
                 align-items: center;
 
                 .button-box {
-                    width: 5rem;
-                    height: 5rem;
+                    width: 4rem;
+                    height: 4rem;
                     color: white;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    font-size: 1.5rem;
+                    font-size: 1.1rem;
                     font-family: Lato;
                     text-transform: uppercase;
                     margin: 0.2rem;
@@ -101,6 +102,8 @@ ion-content {
                 --background: transparent;
                 --box-shadow: none;
                 font-family: raleway;
+                font-weight: lighter;
+                font-size: 0.8rem;
             }
         }
     }

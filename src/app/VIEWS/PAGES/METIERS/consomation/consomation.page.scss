@@ -1,3 +1,8 @@
+ion-content {
+    position: relative;
+   
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -6,59 +11,89 @@
     width: 100%;
     height: 100%;
     padding: 0.5rem;
-    box-shadow: dimgray 1px 0px 2px 0px;
+    position: relative;
+    padding-top: 30px;
+    .title-page {
+        position: fixed;
+        top: 40px;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        background: #0bb8cc;
+        background: linear-gradient(to bottom, #0bb8cc 0%,#0b8e9c 90%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-family: Lato;
+        color: white;
+        z-index: 2;
+    }
     .form-block {
         width: 100%;
+        height: 100%;
         max-width: 35rem;
         padding: 0.5rem;
+        padding-top: 6%;
         position: relative;
+        z-index: 1;
+        .item-form {
+            position: relative;
+            width: 100%;
+            margin-bottom: 1.5rem;
+            ion-label {
+                position: absolute;
+                top: -36%;
+                left: 4%;
+                padding-left: 5px;
+                padding-right: 5px;
+                background: white;
+                font-size: 0.6rem;
+                font-family: raleway;
+                color: #0a6792;
+            }
+            .form-group {
+                ion-select {
+                    font-family: raleway;
+                    color: #e05e08;
+                    font-weight: lighter;
+                }
+                ion-input {
+                    font-family: raleway;
+                    font-size: 1.3rem;
+                }
+            }
+        }
+
+      
+       
+        ion-buttons {
+            width: 100%;
+            justify-content: center;
+            margin-top: 4%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background: #3e3636;
+            padding-bottom: 3%;
+            padding-top: 3%;
+            ion-button {
+                color: white;
+                font-family: Lato;
+                width: 45%;
+                background: #f96807;
+                border-radius: 25px!important;
+                border: 1px solid brown;
+            }
+            #annuler {
+                background: rgb(226, 226, 226);
+                color: darkcyan;
+            }
+        }
         ion-item {
             margin-top: 1%;
         }
-        ion-buttons {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 40px;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            background: yellow;
-            left: 0;
-            ion-button {
-                width: calc(50% - 5px);
-            }
-        }
-    }
-
-    ion-select{
-        flex-wrap: wrap;
-    }
-
-    .button{
-        
-        font-size: 0.7rem;
-        
-    }
-    .validate{
-        background-color: #0055a4;
-        border-radius: 5px;
-        padding: 0.5rem;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        color: #e2dfdf;
-        font-size: 0.8rem;
-        cursor: pointer;
-    }
-
-    .button{
-        background-color: rgb(233, 101, 101);
-        border-radius: 5px;
-        padding: 0.7rem;
-        font-weight: 500;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        color: #e2dfdf;
-        font-size: 0.8rem;
-        cursor: pointer;
     }
 }

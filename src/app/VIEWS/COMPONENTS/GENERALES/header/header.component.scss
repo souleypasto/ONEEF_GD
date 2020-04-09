@@ -8,6 +8,10 @@ ion-header {
         padding-top: unset;
         ion-buttons {
             align-items: flex-start;
+            ion-back-button {
+                color: white;
+                margin-top: -28%;
+            }
             ion-badge {
                 padding-left: 15px;
                 padding-right: 15px;

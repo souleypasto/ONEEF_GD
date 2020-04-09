@@ -30,7 +30,7 @@ export class ConsomationPage implements OnInit {
   newDistance: number;
   startIndex: number;
   endIndex: number;
-  mesure: string;
+  mesure: number;
   imagePath: string;
   shift: string;
 
@@ -163,6 +163,20 @@ export class ConsomationPage implements OnInit {
       }
     });
   }
+
+  /**
+   * calculer l'index consommer 
+   */
+  calculateMesurePompe(typeIndex: string): void {
+    if (typeIndex === 'old') {
+      if (!this.endIndex) {
+        this.endIndex = 0;
+        this.mesure = this.startIndex;
+      }
+    } else {
+      this.mesure = this.endIndex - this.startIndex;
+    }
+  }
  
 
   /**
@@ -213,6 +227,15 @@ export class ConsomationPage implements OnInit {
    */
   onShiftSelected() {
     // this.util.showPopupMessage('shift changer');
+  }
+
+  /**
+   * annuler processus d'enregistrement dun nouvelle consomation 
+   * @param :: nothings 
+   * @returns :: Nothings 
+   */
+  annulerProcess(): void {
+    this.util.redirectWithRouteQuery(`menu`);
   }
 
 }
