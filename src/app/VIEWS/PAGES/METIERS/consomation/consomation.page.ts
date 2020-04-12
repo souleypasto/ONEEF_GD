@@ -261,7 +261,7 @@ export class ConsomationPage implements OnInit {
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
-      this.imagePompe = 'data:image/jpeg;base64,' + imageData;
+      this.imagePompe = imageData;
       this.canValidateOperation = true;
       this.cropImage(imageData);
       }, (err) => {
