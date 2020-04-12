@@ -3,7 +3,7 @@
   <ion-content>
     <div class="container">
       <div class="title-page">Nouvelle Distribution</div>
-      <form class="form-block">
+      <form class="form-block" #consumptForm="ngForm" novalidate autocomplete="off">
           <div class="item-form">
             <ion-label position="floating">Pompe (*)</ion-label>
             <div class="form-group">
@@ -60,7 +60,7 @@
                           interface="action-sheet"
                           (ionChange)="fullFieldOperationType()"
                           name="operationType"
-                          [(ngModel)]="operationType"
+                          [(ngModel)]="typeProduit"
                           placeholder="Choisir">
                   <ion-select-option [value]="operation" *ngFor="let operation of operationTypes">
                     <p></p><br>
@@ -122,12 +122,16 @@
             <div class="image-file">
               <img *ngIf="imagePompe" [src]="imagePompe"/>
             </div>
-            <ion-input name="imagePompe" type="" [(ngModel)]="imagePompe"></ion-input>
-            <ion-input name="imagePompe" type="file" [(ngModel)]="imagePompe"></ion-input>
           </div>
           <ion-buttons class="action-button-block">
-            <ion-button (click)="selectImage()">AJOUTER PHOTO</ion-button>
-            <ion-button *ngIf="canValidateOperation" id="annuler" (click)="processStoreConsomation()">VALIDATION OPERATEUR</ion-button>
+              <ion-button *ngIf="!canValidateOperation"
+                          [disabled]="!consumptForm.valid"
+                          (click)="selectImage()">AJOUTER PHOTO</ion-button>
+              <ion-button id="annuler" 
+                          *ngIf="!canValidateOperation"
+                          [disabled]="!consumptForm.valid"
+                          (click)="selectImage()">Annuler</ion-button>
+              <ion-button *ngIf="canValidateOperation" (click)="processStoreConsomation()">VALIDER</ion-button>
           </ion-buttons>
       </form>
     </div>

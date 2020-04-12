@@ -145,8 +145,8 @@ export class ConsomationPage implements OnInit {
   }
 
   /**
-   * recupere la liste des Pompes relatif a cet Utilisateur 
-   * @returns :: nothings 
+   * recupere la liste des Pompes relatif a cet Utilisateur
+   * @returns :: nothings
    */
   getListPompeOfTHisUser(): void {
     this.localStore.getObject(LIST_USER_PUMP_STR).then(resultPump => {
@@ -275,21 +275,21 @@ export class ConsomationPage implements OnInit {
 
   async selectImage() {
     const actionSheet = await this.actionSheetController.create({
-      header: 'Select Image source',
+      header: 'Sélectionner Image',
       buttons: [{
-        text: 'Load from Library',
+        text: 'Galerie',
         handler: () => {
           this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
         }
       },
       {
-        text: 'Use Camera',
+        text: 'Camera',
         handler: () => {
           this.pickImage(this.camera.PictureSourceType.CAMERA);
         }
       },
       {
-        text: 'Cancel',
+        text: 'Annuler',
         role: 'cancel'
       }
       ]

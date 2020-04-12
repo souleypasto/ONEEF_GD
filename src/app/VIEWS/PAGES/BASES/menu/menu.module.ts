@@ -42,10 +42,6 @@ const routes: Routes = [{
         path: 'distribution',
         loadChildren: () => import('../../METIERS/distribution/distribution.module').then(m => m.DistributionPageModule)
       },
-      {
-        path: 'change-pump',
-        loadChildren: () => import('../../METIERS/change-pump/change-pump.module').then(m => m.ChangePumpPageModule)
-      },
     ]
   },
   {

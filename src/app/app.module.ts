@@ -18,7 +18,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModifPasswordPageModule } from './VIEWS/PAGES/LOGGED/modif-password/modif-password.module';
 import { File } from '@ionic-native/file/ngx';
 import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
-import { AutoCompleteModule } from 'ionic4-auto-complete';
 
 
 
@@ -36,7 +35,6 @@ import { AutoCompleteModule } from 'ionic4-auto-complete';
     AngularFireAuthModule,
     AngularFirestoreModule,
     ModifPasswordPageModule,
-    AutoCompleteModule
 
   ],
   providers: [
