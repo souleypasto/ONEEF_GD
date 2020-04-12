@@ -59,7 +59,6 @@ export class DistributionPage implements OnInit {
   croppedImagepath = '';
   isLoading = false;
   canValidateOperation = false;
-  canAddImage = true;
 
   imagePickerOptions = {
     maximumImagesCount: 1,
