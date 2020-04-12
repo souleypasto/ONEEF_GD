@@ -249,7 +249,6 @@ export class DistributionPage implements OnInit {
       // If it's base64 (DATA_URL):
       this.imagePompe = 'data:image/jpeg;base64,' + imageData;
       this.canValidateOperation = true;
-      this.canAddImage = false;
       this.cropImage(imageData);
       }, (err) => {
       // Handle error
