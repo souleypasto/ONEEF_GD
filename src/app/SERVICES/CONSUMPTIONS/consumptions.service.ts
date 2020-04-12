@@ -1,3 +1,4 @@
+import { ADD_CONSUMPTION_URL } from './../../TOOLS/FUNCTIONS/Url';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Consumption } from '../../MODELS/Consumption';
@@ -50,6 +51,7 @@ export class ConsumptionsService {
     return new Promise (resolved => {
       this.addConsumption(consumption).subscribe((result: Consumption) => {
         if (result) {
+          console.log(result);
           resolved(true);
         } else {
           resolved(false);
@@ -63,6 +65,6 @@ export class ConsumptionsService {
    * @param consumption
    */
   addConsumption(consumption: Consumption): Observable<Consumption> {
-    return this.http.post(`${this.baseUrl}/create`, {consumption});
+    return this.http.post(ADD_CONSUMPTION_URL, {consumption});
   }
 }

@@ -1,3 +1,4 @@
+import { CHANGE_PIN_URL, UPDATE_PASSWORD_IRL } from './../../TOOLS/FUNCTIONS/Url';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Events } from '@ionic/angular';
@@ -137,7 +138,7 @@ export class UtilisateurService {
    * @retunr :: Observable<any>
    */
   updatePin(userId: number, pin: string): Observable < any > {
-    return this.http.post(`${this.baseUrl}/update_pin`, {
+    return this.http.post(CHANGE_PIN_URL, {
       userId,
       pin
     });
@@ -150,7 +151,7 @@ export class UtilisateurService {
    * @returns :: Observable<any></any>
    */
   updateUserPassword(login: string, password: string): Observable < any > {
-    return this.http.post(`${this.baseUrl}/update_password`, {
+    return this.http.post(UPDATE_PASSWORD_IRL, {
       login,
       password
     });

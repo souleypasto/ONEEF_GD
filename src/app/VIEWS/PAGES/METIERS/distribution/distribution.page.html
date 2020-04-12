@@ -1,83 +1,83 @@
 <app-header [titre]="'DISTRIBUTION'" [soustitre]="'le sous-titre de la page'" [defaultParenUrl]="defaultParentUrl">
   </app-header>
   <ion-content>
-    <h4>Nouvelle Distribution</h4>
     <div class="container">
+      <div class="title-page">Nouvelle Distribution</div>
       <form class="form-block">
-          <div>
-            <ion-label>Pompe:</ion-label>
+          <div class="item-form">
+            <ion-label position="floating">Pompe (*)</ion-label>
             <div class="form-group">
-              <ion-select name="chosedPump" [(ngModel)]="chosedPump" placeholder="Pompe">
+              <ion-select interface="action-sheet" name="chosedPump" [(ngModel)]="chosedPump" placeholder="Selectioner la Pompe">
                 <ion-select-option [value]="pompe" *ngFor="let pompe of listPompes">
                   <ion-label>
                     <h2>
-                      {{pompe.libelle_pompe}}
+                        {{pompe.libelle_pompe}} ::  {{pompe.code_pompe}}
                     </h2>
-                    <p>
-                      {{pompe.code_pompe}}
-                    </p>
                   </ion-label>
                 </ion-select-option>
               </ion-select>
+            </div>
           </div>
-          </div>
-          <div>
-              <ion-label>Shift:</ion-label>
-              <div class="form-group" >
-                <ion-select (ionChange)="onShiftSelected()" name="shift" [(ngModel)]="hoursAvailable" placeholder="Shift">
+          <div class="item-form">
+              <ion-label position="floating">Shift</ion-label>
+              <div class="form-group">
+                <ion-select interface="action-sheet" (ionChange)="onShiftSelected()" name="shift" [(ngModel)]="hoursAvailable" placeholder="Choisir la période">
                   <ion-select-option> NUIT </ion-select-option>
                   <ion-select-option> JOUR </ion-select-option>
                 </ion-select>
               </div>
           </div>
-        <div>
-          <ion-label>Types de Carburant</ion-label>
+        <div class="item-form">
+          <ion-label position="floating">Carburant</ion-label>
           <div class="form-group">
-              <ion-select  name="typeCarburant" [(ngModel)]="typeCarburant" placeholder="Choisir" >
+              <ion-select interface="action-sheet" name="typeCarburant" [(ngModel)]="typeCarburant" placeholder="Type de Carburant" >
                   <ion-select-option value="GO">GO</ion-select-option>
                   <ion-select-option value="PO">PO</ion-select-option>
                   <ion-select-option value="TO">TO</ion-select-option>
                 </ion-select>
           </div>
         </div>
-        <div>
-          <ion-label>Compartiment:</ion-label>
+        <div class="item-form">
+          <ion-label position="floating">Compartiment:</ion-label>
           <div class="form-group">
             <ion-select class="form-select"
-                      (ionChange)="fullFieldCompartment()"
-                      name="vehicule"
-                      [(ngModel)]="compartment"
-                      placeholder="Choisir">
-                <ion-select-option [value]="compartment" *ngFor="let compartment of listCompartment">
+                        interface="action-sheet"
+                        (ionChange)="fullFieldCompartment()"
+                        name="vehicule"
+                        [(ngModel)]="compartment"
+                        placeholder="Selectionner le compartiment">
+                <ion-select-option [value]="compartment" *ngFor="let compartment of compartment">
                   <p></p><br>
                   <p></p>
                 </ion-select-option>
               </ion-select>
           </div>
           </div>
-          <div>
-            <ion-label>Type d'opération:</ion-label>
+          <div class="item-form">
+            <ion-label position="floating">Type d'opération:</ion-label>
             <div class="form-group">
               <ion-select class="form-select"
-                        (ionChange)="fullFieldOperationType()"
-                        name="operationType"
-                        [(ngModel)]="operationType"
-                        placeholder="Choisir">
-                  <ion-select-option [value]="operation" *ngFor="let operation of ListOperations">
+                          interface="action-sheet"
+                          (ionChange)="fullFieldOperationType()"
+                          name="operationType"
+                          [(ngModel)]="operationType"
+                          placeholder="Choisir">
+                  <ion-select-option [value]="operation" *ngFor="let operation of operationTypes">
                     <p></p><br>
                     <p></p>
                   </ion-select-option>
                 </ion-select>
             </div>
           </div>
-          <div>
-            <ion-label>Véhicule:</ion-label>
+          <div class="item-form">
+            <ion-label position="floating">Véhicule:</ion-label>
             <div class="form-group">
                 <ion-select class="form-select"
-                          (ionChange)="fullFieldDriver()"
-                          name="vehicule"
-                          [(ngModel)]="vehicule"
-                          placeholder="Choisir">
+                            interface="action-sheet"
+                            (ionChange)="fullFieldDriver()"
+                            name="vehicule"
+                            [(ngModel)]="vehicule"
+                            placeholder="Choisir">
                     <ion-select-option [value]="vehicule" *ngFor="let vehicule of listVehicules">
                       <p>{{vehicule.marque_modele}}</p><br>
                       <p>{{vehicule.current_odometer + 'Km' + vehicule.immatriculation}}</p>
@@ -85,57 +85,50 @@
                   </ion-select>
             </div>
           </div>
-        <div class="row">
-          <div>
-            <ion-label>Chauffeur :</ion-label>
-            <div class="form-group">
-                <ion-input name="chauffeur" disabled [placeholder]="chauffeurName"></ion-input>
-            </div>
-          </div>
-          <div>
-              <ion-label>Ancienne Distance :</ion-label>
+          <div class="item-form">
+              <ion-label position="floating">Chauffeur</ion-label>
               <div class="form-group">
-                <ion-input type="numeric" name="oldDistance" [(ngModel)]="oldDistance"></ion-input>
+                <ion-input name="chauffeur" disabled [placeholder]="chauffeurName ? chauffeurName : 'Nom CHauffeur'"></ion-input>
               </div>
             </div>
-        </div>
-        <div class="row">
-            <div>
-              <ion-label>ouvelle Distance :</ion-label>
-              <div class="form-group">
-                <ion-input type="numeric" name="newDistance" [(ngModel)]="newDistance"></ion-input>
+            <div class="row-line">
+                <div class="title-row">Kilometrage</div>
+                <div class="row">
+                  <div class="form-group">
+                    <ion-input type="number" name="oldDistance" [(ngModel)]="oldDistance" placeholder="Ancienne Dist"></ion-input>
+                  </div>
+                  <div class="form-group">
+                    <ion-input type="number" name="newDistance" [(ngModel)]="newDistance" placeholder="Nouvelle Dist"></ion-input>
+                  </div>
               </div>
             </div>
-            <div>
-              <ion-label>Mesure / début :</ion-label>
-              <div class="form-group">
-                <ion-input type="numeric"  name="startIndex" [(ngModel)]="startIndex"></ion-input>
+
+            <div class="row-line">
+                <div class="title-row">Mesure de la Pompe :</div>
+                <div class="row">
+                  <div class="form-group">
+                    <ion-input type="number" (ionChange)="calculateMesurePompe('old')" name="startIndex" [(ngModel)]="startIndex" placeholder="Ancien index"></ion-input>
+                  </div>
+                  <div class="form-group">
+                    <ion-input type="number" (ionChange)="calculateMesurePompe('new')" name="endIndex" [(ngModel)]="endIndex" placeholder="Nouvel Index"></ion-input>
+                  </div>
+                  <div class="form-group">
+                    <ion-input type="number" name="mesure" disabled [placeholder]="mesure? mesure : 'Consomation'"></ion-input>
+                  </div>
+                </div>
               </div>
+          <div class="row-line">
+            <div class="title-row">Image</div>
+            <div class="image-file">
+              <img *ngIf="imagePompe" [src]="imagePompe"/>
             </div>
-        </div>
-        <div class="row">
-          <div>
-            <ion-label>Mesure / Fin :</ion-label>
-            <div class="form-group">
-              <ion-input type="numeric" name="endIndex" [(ngModel)]="endIndex"></ion-input>
-            </div>
+            <ion-input name="imagePompe" type="" [(ngModel)]="imagePompe"></ion-input>
+            <ion-input name="imagePompe" type="file" [(ngModel)]="imagePompe"></ion-input>
           </div>
-          <div>
-            <ion-label>Dépensé :</ion-label>
-            <div class="form-group">
-              <ion-input type="numeric" name="mesure" disabled [placeholder]="mesure"></ion-input>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="button"> 
-            <ion-icon  name="photo"></ion-icon>Ajouter une photo
-          </div>
-          <button disabled="true" class="validate">
-            <div (click)="processStoreConsomation()">Valider Opération</div>
-          </button>
-        </div>
-        
+          <ion-buttons class="action-button-block">
+            <ion-button (click)="selectImage()">AJOUTER PHOTO</ion-button>
+            <ion-button *ngIf="canValidateOperation" id="annuler" (click)="processStoreConsomation()">VALIDATION OPERATEUR</ion-button>
+          </ion-buttons>
       </form>
     </div>
   </ion-content>

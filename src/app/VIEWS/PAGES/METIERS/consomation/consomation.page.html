@@ -1,12 +1,11 @@
 <app-header [titre]="'CONSOMMATION'" [soustitre]="'le sous-titre de la page'" [defaultParenUrl]="defaultParentUrl">
 </app-header>
-
 <ion-content>
   <div class="container">
     <div class="title-page">Nouvelle Consommation</div>
-    <form class="form-block">
+    <form class="form-block" #consumptForm="ngForm" novalidate autocomplete="off">
         <div class="item-form">
-          <ion-label position="floating">POMPE (*)</ion-label>
+          <ion-label position="floating">Pompe (*)</ion-label>
           <div class="form-group">
             <ion-select interface="action-sheet" name="chosedPump" [(ngModel)]="chosedPump" placeholder="Selectioner la Pompe">
               <ion-select-option [value]="pompe" *ngFor="let pompe of listPompes">
@@ -20,7 +19,7 @@
           </div>
         </div>
         <div class="item-form">
-          <ion-label position="floating">SHIFT</ion-label>
+          <ion-label position="floating">Shift</ion-label>
             <div class="form-group" >
               <ion-select interface="action-sheet" (ionChange)="onShiftSelected()" name="shift" [(ngModel)]="hoursAvailable" placeholder="Choisir la Periode">
                 <ion-select-option> NUIT </ion-select-option>
@@ -56,7 +55,7 @@
       <div class="item-form">
         <div class="form-group">
           <ion-input name="chauffeur" disabled [placeholder]="chauffeurName ? chauffeurName : 'Nom CHauffeur '"></ion-input>
-      </div>
+        </div>
       </div>
       <div class="row-line">
         <div class="title-row">Kilometrage</div>
@@ -80,25 +79,23 @@
             <ion-input type="number" (ionChange)="calculateMesurePompe('new')" name="endIndex" [(ngModel)]="endIndex" placeholder="Nouvel Index"></ion-input>
           </div>
           <div class="form-group">
-            <ion-input type="number" name="mesure" disabled [placeholder]="mesure? mesure : 'Consomation'"></ion-input>
+            <ion-input type="number" name="mesure" disabled [placeholder]="mesure? mesure : 'Consommation'"></ion-input>
           </div>
         </div>
       </div>
       <div class="row-line">
-        <div class="title-row">Image Temoin</div>
+        <div class="title-row">Image</div>
         <div class="image-file">
           <img *ngIf="imagePompe" [src]="imagePompe"/>
         </div>
         <ion-input name="imagePompe" type="" [(ngModel)]="imagePompe"></ion-input>
-        <div class="button" (click)="selectImage()">Ajouter Photo</div>
-        <ion-button (click)="processStoreConsomation()">
-         <ion-icon name="checkmark"></ion-icon> ENREGISTRER
-        </ion-button>
         <ion-input name="imagePompe" type="file" [(ngModel)]="imagePompe"></ion-input>
       </div>
       <ion-buttons class="action-button-block">
-        <ion-button id="annuler" (click)="annulerProcess()"> ANNULER </ion-button>
-        <ion-button (click)="processStoreConsomation()"> ENREGISTRER </ion-button>
+        <ion-button 
+                    [disabled]="!consumptForm.valid"
+                    (click)="selectImage()">AJOUTER PHOTO</ion-button>
+        <ion-button *ngIf="canValidateOperation" id="annuler" (click)="processStoreConsomation()">VALIDATION OPERATEUR</ion-button>
       </ion-buttons>
     </form>
   </div>

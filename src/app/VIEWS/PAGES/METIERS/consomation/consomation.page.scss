@@ -64,15 +64,45 @@ ion-content {
                     font-family: raleway;
                     font-size: 1.3rem;
                 }
+                
+            }
+
+            .autocomplete {
+                width: 100%;
+            
+                ion-searchbar {
+                    padding: 1px !important;
+                }
+            
+                ion-list {
+                    position: absolute;
+                    width: inherit;
+                    overflow-y: scroll;
+                    max-height: 150%;
+                    z-index: 999;
+            
+                    ion-item {
+            
+                        img {
+                            max-height: 2.5rem;
+                            width: auto;
+                            margin: auto;
+                            display: block;
+                        }
+                    }
+            
+                    ion-item:hover {
+                        cursor: pointer;
+                        background: #f1f1f1
+                    }
+                }
             }
         }
 
-      
-       
         ion-buttons {
             width: 100%;
             justify-content: center;
-            margin-top: 4%;
+            margin-top: 6%;
             position: fixed;
             bottom: 0;
             left: 0;
@@ -96,4 +126,16 @@ ion-content {
             margin-top: 1%;
         }
     }
+
+    ion-button {
+        color: white;
+        font-family: Lato;
+        width: 45%;
+        background: #f96807;
+        border-radius: 25px!important;
+        border: 1px solid brown;
+    }
+
+
+    
 }

@@ -4,10 +4,9 @@ ion-card {
     flex-direction: column;
     align-items: center;
     padding: 10px;
+    cursor: pointer;
     .info-line {
         width: 100%;
-        font-size: 0.7rem;
-        margin-bottom: 1em;
         .title-info {
             float: left;
         }

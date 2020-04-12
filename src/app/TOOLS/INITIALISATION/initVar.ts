@@ -83,12 +83,6 @@ export const ADDITIONAL_POMP_MENU = [
     url: RACINE_URL_ONF + 'distribution',
     type: 'page'
   },
-  {
-    title: 'CHANGER DE COMPTE ',
-    icon: 'briefcase',
-    url: 'loggin' ,
-    type: 'page'
-  },
 ];
 
 export const LIST_PAGE_MENU = [{

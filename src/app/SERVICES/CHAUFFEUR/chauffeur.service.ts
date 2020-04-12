@@ -12,7 +12,7 @@ export class ChauffeurService {
   constructor(private locaStore: LocalStorageService) { }
 
   /**
-   * 
+   *
    * @param id_vehicule 
    * @returns Vehicule in a Promise
    */

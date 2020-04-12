@@ -13,6 +13,7 @@ export class ConsumptionComponent implements OnInit {
   @Input() consumption: Consumption;
 
   driverName: string;
+  status = 'Réussie';
 
   constructor(private driveServ: ChauffeurService) {}
 

@@ -10,7 +10,7 @@ export class MenuComponent implements OnInit {
 
 
   //
-  // Les variables 
+  // Les variables
   //
   @Input() template: string;
   @Input() menu: any;

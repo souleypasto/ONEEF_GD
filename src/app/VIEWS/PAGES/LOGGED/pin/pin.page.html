@@ -34,6 +34,10 @@
           <div class="button-box">X</div>
         </div>
       </div>
+      <div class="button-action">
+        <ion-button [disabled]="buildNewPing.length !== 6" (click)="validerNouveauPin()">VALIDER</ion-button>
+        <ion-button (click)="annulerAction()">ANNULER</ion-button>
+      </div>
     </div>
   </ion-content>
   

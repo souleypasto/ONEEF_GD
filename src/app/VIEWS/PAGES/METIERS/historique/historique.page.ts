@@ -27,7 +27,7 @@ export class HistoriquePage implements OnInit {
   }
 
   /**
-   * initialisation des Varaibles de la classe 
+   * initialisation des Varaibles de la classe
    * @returns :: Nothings
    */
   initClassVar() {

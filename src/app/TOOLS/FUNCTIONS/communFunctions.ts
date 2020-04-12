@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage';
   providedIn: 'root'
 })
 export class CommunFunction {
- 
+  
   constructor(public alertController: AlertController,
               private loadingController: LoadingController, private router: Router, private navCtrl: NavController,
               private toastCtrl: ToastController, private storage: Storage) {}
@@ -33,7 +33,7 @@ export class CommunFunction {
   /**
    * permet de recupérer l'heure courante , doit etre mieux implémenté
    * ne prends rien en paramettre
-   * @returns :: Date 
+   * @returns :: Date
    */
   getCurrentTimeDate(): Date {
     return new Date();

@@ -1,8 +1,6 @@
 <app-header [titre]="'HISTORIQUE TRANSACTION'" [soustitre]="'le sous-titre de la page'"
   [defaultParenUrl]="'menu'"></app-header>
-
 <ion-content>
-  
   <ng-container *ngFor="let consumption of listconsumptions">
     <app-consumption [consumption]="consumption"></app-consumption>
   </ng-container>

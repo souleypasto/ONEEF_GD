@@ -1,3 +1,4 @@
+import { LIST_USER_PUMP_STR, RACINE_URL_ONF } from 'src/app/TOOLS/INITIALISATION/initVar';
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../../../../SERVICES/STORAGE/local-storage.service';
 import { Pump } from 'src/app/MODELS/Pompe';
@@ -37,20 +38,23 @@ export class ConsomationPage implements OnInit {
 
   imagePompe: string;
 
+  model: Consumption;
+
   //
   // Variable selection dans le Formulaire
   //
   listPompes: Pump[] = [];
   listVehicules: Vehicule[];
 
-  // 
-  // AUTRES VARIABLES 
+  //
+  // AUTRES VARIABLES
   //
   idPompiste: number;
   defaultParentUrl: string;
 
   croppedImagepath = '';
   isLoading = false;
+  canValidateOperation = false;
 
   imagePickerOptions = {
     maximumImagesCount: 1,
@@ -133,7 +137,7 @@ export class ConsomationPage implements OnInit {
   }
 
   /**
-   * rempli automatiquement le champ du Chauffeur lorsqu'on choisi le vehicule 
+   * rempli automatiquement le champ du Chauffeur lorsqu'on choisi le vehicule
    */
   fullFieldDriver() {
     this.chauffeurName = this.vehicule.driver_name;
@@ -153,8 +157,8 @@ export class ConsomationPage implements OnInit {
   }
 
   /**
-   * permet de proceder a l'enregistrement dune consomation ou cas ou celle ci serai valider du 
-   * point de vue du remplissage 
+   * permet de proceder a l'enregistrement dune consomation ou cas ou celle ci serai valider du
+   * point de vue du remplissage
    * @returns :: nothings
    */
   processStoreConsomation(): void {
@@ -162,14 +166,14 @@ export class ConsomationPage implements OnInit {
       if (resultCheck) {
         this.buildObjectConsumpTion().then((consumptionBuild: Consumption) => {
           this.consServ.sauvegardeConsomation(consumptionBuild).then((resultOperation: boolean) => {
-            // a sauvegarde s'est bien passé . 
-            // on redirrige vers la liste de consommation de ce pompiste 
+            // a sauvegarde s'est bien passé .
+            // on redirrige vers la liste de consommation de ce pompiste
             if (resultOperation) {
               this.util.showPopupMessage(`Sauvegarde terminée`);
               this.util.redirectWithRouteQuery(`${RACINE_URL_ONF}historique`);
             } else {
-              // La sauvegarde ne s'est pas bien dérouler 
-              // on affiche un Message d'erreur 
+              // La sauvegarde ne s'est pas bien dérouler
+              // on affiche un Message d'erreur
               this.util.showPopupMessage(`Une erreur est survenue : veuillez reessayer`);
             }
           });
@@ -181,7 +185,7 @@ export class ConsomationPage implements OnInit {
   }
 
   /**
-   * calculer l'index consommer 
+   * calculer l'index consommer
    */
   calculateMesurePompe(typeIndex: string): void {
     if (typeIndex === 'old') {
@@ -232,14 +236,15 @@ export class ConsomationPage implements OnInit {
         pompiste_name: this.chauffeurName,
         pump_label: this.chosedPump.libelle_pompe,
         start_index_pompe: this.startIndex.toString(),
-        typeProduit: this.typeCarburant
+        typeProduit: this.typeCarburant,
+        image: this.imagePompe
       };
       resolved(newConsObject);
     });
   }
 
   /**
-   * 
+   *
    */
   onShiftSelected() {
     // this.util.showPopupMessage('shift changer');
@@ -256,7 +261,8 @@ export class ConsomationPage implements OnInit {
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
-      // let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.imagePompe = 'data:image/jpeg;base64,' + imageData;
+      this.canValidateOperation = true;
       this.cropImage(imageData);
       }, (err) => {
       // Handle error
@@ -292,9 +298,9 @@ export class ConsomationPage implements OnInit {
 
   }
   /**
-   * annuler processus d'enregistrement dun nouvelle consomation 
-   * @param :: nothings 
-   * @returns :: Nothings 
+   * annuler processus d'enregistrement dun nouvelle consommation
+   * @param :: nothings
+   * @returns :: Nothings
    */
   annulerProcess(): void {
     this.util.redirectWithRouteQuery(`menu`);
