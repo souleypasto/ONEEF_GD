@@ -1,4 +1,3 @@
-import { PumpComponent } from './../../VIEWS/COMPONENTS/METIERS/pump/pump.component';
 import { ConsumptionComponent } from './../../VIEWS/COMPONENTS/METIERS/consumption/consumption.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,7 +12,7 @@ import { MenuComponent } from '../../VIEWS/COMPONENTS/GENERALES/menu/menu.compon
     HeaderComponent,
     MenuComponent,
     ConsumptionComponent,
-    PumpComponent
+    
 
   ],
   imports: [
@@ -22,8 +21,7 @@ import { MenuComponent } from '../../VIEWS/COMPONENTS/GENERALES/menu/menu.compon
   exports: [
     HeaderComponent,
     MenuComponent,
-    ConsumptionComponent,
-    PumpComponent
+    ConsumptionComponent
   ]
 })
 export class ComponentModule { }

@@ -35,12 +35,13 @@ export class DistributionPage implements OnInit {
   mesure: number;
   imagePath: string;
   shift: string;
+  typeProduit: string;
 
   imagePompe: string;
 
   // Model
   model: Distribution;
-  compartment: Compartment;
+  compartment: string;
   operationTypes: any;
 
   //
@@ -58,6 +59,7 @@ export class DistributionPage implements OnInit {
   croppedImagepath = '';
   isLoading = false;
   canValidateOperation = false;
+  canAddImage = true;
 
   imagePickerOptions = {
     maximumImagesCount: 1,
@@ -114,7 +116,7 @@ export class DistributionPage implements OnInit {
    setCurrentPompisteId(): void {
     this.pompisteService.getCurrentPompisteId().then((idPompiste: number) => {
       if (!idPompiste) {
-        this.util.showPopupMessage(`Impossible de recupérer les Info du Pompiste`);
+        this.util.showPopupMessage(`Impossible de recupérer les Info du Pompiste.`);
       } else {
         this.idPompiste = idPompiste;
       }
@@ -248,6 +250,7 @@ export class DistributionPage implements OnInit {
       // If it's base64 (DATA_URL):
       this.imagePompe = 'data:image/jpeg;base64,' + imageData;
       this.canValidateOperation = true;
+      this.canAddImage = false;
       this.cropImage(imageData);
       }, (err) => {
       // Handle error
@@ -261,21 +264,21 @@ export class DistributionPage implements OnInit {
 
   async selectImage() {
     const actionSheet = await this.actionSheetController.create({
-      header: 'Select Image source',
+      header: 'Sélectionner Image',
       buttons: [{
-        text: 'Load from Library',
+        text: 'Galerie',
         handler: () => {
           this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
         }
       },
       {
-        text: 'Use Camera',
+        text: 'Camera',
         handler: () => {
           this.pickImage(this.camera.PictureSourceType.CAMERA);
         }
       },
       {
-        text: 'Cancel',
+        text: 'Annuler',
         role: 'cancel'
       }
       ]
