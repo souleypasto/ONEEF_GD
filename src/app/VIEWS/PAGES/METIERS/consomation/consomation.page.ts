@@ -8,9 +8,8 @@ import { CommunFunction } from '../../../../TOOLS/FUNCTIONS/communFunctions';
 import { ConsumptionsService } from '../../../../SERVICES/CONSUMPTIONS/consumptions.service';
 import { Consumption } from 'src/app/MODELS/Consumption';
 import { PompisteService } from '../../../../SERVICES/POMPISTE/pompiste.service';
-import { Events, ActionSheetController } from '@ionic/angular';
-import { File } from '@ionic-native/file/ngx';
-import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
+import { Events, ActionSheetController, AlertController } from '@ionic/angular';
+import { CameraService } from 'src/app/SERVICES/CAMERA/Camera.service';
 
 @Component({
   selector: 'app-consomation',
@@ -65,9 +64,9 @@ export class ConsomationPage implements OnInit {
     private pompisteService: PompisteService,
     private localStore: LocalStorageService,
     private util: CommunFunction,
-    private camera: Camera,
+    private camService: CameraService,
     private consServ: ConsumptionsService,
-    private file: File,
+    private alertCtrl: AlertController,
     public actionSheetController: ActionSheetController,
     private events: Events) {
     this.xinitVarForCurrentForm();
@@ -105,8 +104,8 @@ export class ConsomationPage implements OnInit {
   }
 
   /**
-   * cette fonction permet de recupérer l'id du Pompiste qui est en train de mener la transaction 
-   * @returns :: nothings 
+   * cette fonction permet de recupérer l'id du Pompiste qui est en train de mener la transaction
+   * @returns :: nothings
    */
   setCurrentPompisteId(): void {
     this.pompisteService.getCurrentPompisteId().then((idPompiste: number) => {
@@ -120,11 +119,11 @@ export class ConsomationPage implements OnInit {
 
   /**
    * recupere la liste des voiture disponible
-   * a ce niveau j'ai un manque d'informations . je ne sais pas si c'est la liste de vehicule attaché 
+   * a ce niveau j'ai un manque d'informations . je ne sais pas si c'est la liste de vehicule attaché
    * a l'utilisateur en cours , ou bien c'est la liste de tous les vehicule enregistre dans la BD ..
-   * si c'est le premier cas alors le code est suffisament bon. sinon il faudra juste changer la source de donnée 
+   * si c'est le premier cas alors le code est suffisament bon. sinon il faudra juste changer la source de donnée
    * @param none
-   * @returns :: nothinds 
+   * @returns :: nothinds
    */
   getListCarsAvailable(): void {
     this.localStore.getObject(CARS).then(resultCars => {
@@ -197,13 +196,15 @@ export class ConsomationPage implements OnInit {
       this.mesure = this.endIndex - this.startIndex;
     }
   }
- 
+
+
+
 
   /**
-   * cette fonction permet de verifier la validité des données 
-   * elle verifie principalement si les données ont été rempli dans tous les champs 
+   * cette fonction permet de verifier la validité des données
+   * elle verifie principalement si les données ont été rempli dans tous les champs
    * @returns :: Promise<boolean></boolean> True / representant la promesse revoyer si les donnees
-   * sont bien remplies ou encore False représentation le cas l'expression contraire 
+   * sont bien remplies ou encore False représentation le cas l'expression contraire
    */
   checkIfDataIsWellFilled(): Promise<boolean> {
     return new Promise (resolved => {
@@ -250,51 +251,51 @@ export class ConsomationPage implements OnInit {
     // this.util.showPopupMessage('shift changer');
   }
 
-  pickImage(sourceType) {
-    const options: CameraOptions = {
-    quality: 100,
-    sourceType: sourceType,
-    destinationType: this.camera.DestinationType.FILE_URI,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
-    };
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      this.imagePompe = 'data:image/jpeg;base64,' + imageData;
-      this.canValidateOperation = true;
-      this.cropImage(imageData);
-      }, (err) => {
-      // Handle error
-      });
+  pickImage() {
+    // const options: CameraOptions = {
+    // quality: 100,
+    // sourceType,
+    // destinationType: this.camera.DestinationType.FILE_URI,
+    // encodingType: this.camera.EncodingType.JPEG,
+    // mediaType: this.camera.MediaType.PICTURE
+    // };
+    // this.camera.getPicture(options).then((imageData) => {
+    //   // imageData is either a base64 encoded string or a file URI
+    //   // If it's base64 (DATA_URL):
+    //   this.imagePompe = imageData;
+    //   this.canValidateOperation = true;
+    //   this.cropImage(imageData);
+    //   }, (err) => {
+    //   // Handle error
+    //   });
+  }
 
-}
-  cropImage(imageData: any) {
+  cropImage() {
     throw new Error('Method not implemented.');
   }
 
   async selectImage() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Sélectionner Image',
-      buttons: [{
-        text: 'Galerie',
-        handler: () => {
-          this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
-        }
-      },
-      {
-        text: 'Camera',
-        handler: () => {
-          this.pickImage(this.camera.PictureSourceType.CAMERA);
-        }
-      },
-      {
-        text: 'Annuler',
-        role: 'cancel'
-      }
-      ]
-    });
-    await actionSheet.present();
+    // const actionSheet = await this.actionSheetController.create({
+    //   header: 'Sélectionner Image',
+    //   buttons: [{
+    //     text: 'Galerie',
+    //     handler: () => {
+    //       this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
+    //     }
+    //   },
+    //   {
+    //     text: 'Camera',
+    //     handler: () => {
+    //       this.pickImage(this.camera.PictureSourceType.CAMERA);
+    //     }
+    //   },
+    //   {
+    //     text: 'Annuler',
+    //     role: 'cancel'
+    //   }
+    //   ]
+    // });
+    // await actionSheet.present();
 
   }
   /**
@@ -305,5 +306,98 @@ export class ConsomationPage implements OnInit {
   annulerProcess(): void {
     this.util.redirectWithRouteQuery(`menu`);
   }
+
+  addPhotoNow() {
+    const choose = this.alertCtrl.create({
+      subHeader: 'Photo de profile',
+      inputs: [{
+          type: 'radio',
+          label: 'Prendre une photo',
+          value: 'Photo',
+          checked: true
+        },
+        {
+          type: 'radio',
+          label: 'Galerie',
+          value: 'Galerie',
+          checked: false
+        }
+
+      ],
+      buttons: [{
+          text: 'Cancel',
+          handler: () => {
+            console.log('cancel clicked');
+          }
+        },
+        {
+          text: 'OK',
+          handler: data => {
+            console.log('my choice checked', data);
+            if (data === 'Photo') {
+              this.getPictureFromCamera();
+            } else {
+              this.getPictureFromPhotoLibrary();
+            }
+          }
+        }
+      ]
+    }).then(chooseResp => {
+      chooseResp.present();
+    });
+    // choose.present();
+  }
+
+  getPictureFromPhotoLibrary() {
+    this.camService.getPictureFromPhotoLibrary().then((r: any) => {
+      if (r != null) {
+        const localMedia = this.processSelectedImage(r);
+        this.imagePompe = localMedia.image64;
+        this.setImageBLockVisible();
+      } else {
+        console.log('camService returned null');
+      }
+    }, (e: any) => {
+      console.log(e);
+    });
+  }
+
+  getPictureFromCamera() {
+    this.camService.getPictureFromCamera().then(r => {
+      if (r != null) {
+        const localMedia = this.processSelectedImage(r);
+        this.imagePompe = localMedia.image64;
+        this.setImageBLockVisible();
+      }
+    }, e => {
+      console.log(e);
+    });
+  }
+
+  /**
+   * 
+   * @param mediaData 
+   */
+  processSelectedImage(mediaData: any) {
+    return {
+      principal:   true,
+      image64: mediaData,
+      target: 'default'
+    };
+  }
+
+  /***
+   *
+   */
+  setImageBLockVisible() {
+    const idImageBlock = document.getElementById('imageBlock');
+    const idButtonChose = document.getElementById('buttonImage');
+    idImageBlock.style.display = 'block';
+    idButtonChose.style.position = 'absolute';
+    idButtonChose.style.right = '2%';
+    idButtonChose.innerHTML = 'Rechoisir';
+    idButtonChose.style.transition = '200ms';
+  }
+
 
 }

@@ -81,6 +81,20 @@
         font-weight: bold;
         color: #0055a4;
     }
+    .image-file {
+        width: 50%;
+        transition: 200ms;
+        height: 7rem;
+        border: 2px solid #f96807;
+        border-radius: 10px;
+        display: none;
+        overflow: hidden;
+        margin-right: 30%;
+        img {
+            width: 100%;
+            object-fit: contain;
+        }
+    }
     .row{ 
         display: flex;
         flex-direction: row;

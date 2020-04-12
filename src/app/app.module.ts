@@ -17,7 +17,8 @@ import { IonicGestureConfig } from './DIRECTIVES/ionic-gesture-config.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ModifPasswordPageModule } from './VIEWS/PAGES/LOGGED/modif-password/modif-password.module';
 import { File } from '@ionic-native/file/ngx';
-import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { NgxImageCompressService } from 'ngx-image-compress';
 
 
 
@@ -54,8 +55,9 @@ import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: IonicGestureConfig
-    }
+    },
+    NgxImageCompressService,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {} 

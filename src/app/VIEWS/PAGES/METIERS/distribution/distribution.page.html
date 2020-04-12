@@ -122,13 +122,15 @@
             <div class="image-file">
               <img *ngIf="imagePompe" [src]="imagePompe"/>
             </div>
+            <ion-input name="imagePompe" type="" [(ngModel)]="imagePompe"></ion-input>
+            <ion-input name="imagePompe" type="file" [(ngModel)]="imagePompe"></ion-input>
           </div>
           <ion-buttons class="action-button-block">
               <ion-button *ngIf="!canValidateOperation"
                           [disabled]="!consumptForm.valid"
                           (click)="selectImage()">AJOUTER PHOTO</ion-button>
               <ion-button id="annuler" 
-                          *ngIf="!canValidateOperation"
+                          *ngIf="canValidateOperation"
                           [disabled]="!consumptForm.valid"
                           (click)="selectImage()">Annuler</ion-button>
               <ion-button *ngIf="canValidateOperation" (click)="processStoreConsomation()">VALIDER</ion-button>
