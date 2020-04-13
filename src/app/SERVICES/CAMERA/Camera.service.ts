@@ -9,7 +9,6 @@ import { NgxImageCompressService } from 'ngx-image-compress';
     providedIn: 'root'
 })
 export class CameraService {
-   
 
     imgResultBeforeCompress: string;
     imgResultAfterCompress: string;
@@ -22,7 +21,7 @@ export class CameraService {
     }
 
     getPictureFromPhotoLibrary() {
-        return this.getImage(this.camera.PictureSourceType.PHOTOLIBRARY);     
+        return this.getImage(this.camera.PictureSourceType.PHOTOLIBRARY);
      }
 
     getImage(
@@ -58,7 +57,6 @@ export class CameraService {
                             }
                         );
                     } else {
-                        console.log('vue image:', this.imgResultBeforeCompress);
                         resolve(this.imgResultBeforeCompress);
                     }
                 },

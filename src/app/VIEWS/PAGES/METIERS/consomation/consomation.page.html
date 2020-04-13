@@ -88,18 +88,13 @@
         <div class="image-file" id="imageBlock">
           <img *ngIf="imagePompe" [src]="imagePompe"/>
         </div>
-        <ion-button id="buttonImage" (click)="addPhotoNow()">IMAGE</ion-button>
-          <!-- <ion-input name="imagePompe" type="" [(ngModel)]="imagePompe"></ion-input>
-          <ion-input name="imagePompe" type="file" [(ngModel)]="imagePompe"></ion-input> -->
+        <ion-button id="buttonImage" (click)="addPhotoNow()">Ajouter Photo</ion-button>
         </div>
       <ion-buttons class="action-button-block">
-        <ion-button *ngIf="!canValidateOperation"
-                    [disabled]="!consumptForm.valid"
-                    (click)="selectImage()">AJOUTER PHOTO</ion-button>
         <ion-button id="annuler" 
                     *ngIf="canValidateOperation"
                     [disabled]="!consumptForm.valid"
-                    (click)="selectImage()">Annuler</ion-button>
+                    (click)="cancelProcess()">Annuler</ion-button>
         <ion-button *ngIf="canValidateOperation" (click)="processStoreConsomation()">VALIDER</ion-button>
     </ion-buttons>
     </form>

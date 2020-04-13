@@ -251,59 +251,16 @@ export class ConsomationPage implements OnInit {
     // this.util.showPopupMessage('shift changer');
   }
 
-  pickImage() {
-    // const options: CameraOptions = {
-    // quality: 100,
-    // sourceType,
-    // destinationType: this.camera.DestinationType.FILE_URI,
-    // encodingType: this.camera.EncodingType.JPEG,
-    // mediaType: this.camera.MediaType.PICTURE
-    // };
-    // this.camera.getPicture(options).then((imageData) => {
-    //   // imageData is either a base64 encoded string or a file URI
-    //   // If it's base64 (DATA_URL):
-    //   this.imagePompe = imageData;
-    //   this.canValidateOperation = true;
-    //   this.cropImage(imageData);
-    //   }, (err) => {
-    //   // Handle error
-    //   });
-  }
-
   cropImage() {
     throw new Error('Method not implemented.');
   }
 
-  async selectImage() {
-    // const actionSheet = await this.actionSheetController.create({
-    //   header: 'Sélectionner Image',
-    //   buttons: [{
-    //     text: 'Galerie',
-    //     handler: () => {
-    //       this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
-    //     }
-    //   },
-    //   {
-    //     text: 'Camera',
-    //     handler: () => {
-    //       this.pickImage(this.camera.PictureSourceType.CAMERA);
-    //     }
-    //   },
-    //   {
-    //     text: 'Annuler',
-    //     role: 'cancel'
-    //   }
-    //   ]
-    // });
-    // await actionSheet.present();
-
-  }
   /**
    * annuler processus d'enregistrement dun nouvelle consommation
    * @param :: nothings
    * @returns :: Nothings
    */
-  annulerProcess(): void {
+  cancelProcess(): void {
     this.util.redirectWithRouteQuery(`menu`);
   }
 
@@ -333,7 +290,6 @@ export class ConsomationPage implements OnInit {
         {
           text: 'OK',
           handler: data => {
-            console.log('my choice checked', data);
             if (data === 'Photo') {
               this.getPictureFromCamera();
             } else {
@@ -353,12 +309,10 @@ export class ConsomationPage implements OnInit {
       if (r != null) {
         const localMedia = this.processSelectedImage(r);
         this.imagePompe = localMedia.image64;
+        this.canValidateOperation = true;
         this.setImageBLockVisible();
-      } else {
-        console.log('camService returned null');
       }
     }, (e: any) => {
-      console.log(e);
     });
   }
 
@@ -367,16 +321,16 @@ export class ConsomationPage implements OnInit {
       if (r != null) {
         const localMedia = this.processSelectedImage(r);
         this.imagePompe = localMedia.image64;
+        this.canValidateOperation = true;
         this.setImageBLockVisible();
       }
     }, e => {
-      console.log(e);
     });
   }
 
   /**
    * 
-   * @param mediaData 
+   * @param mediaData
    */
   processSelectedImage(mediaData: any) {
     return {
@@ -395,7 +349,7 @@ export class ConsomationPage implements OnInit {
     idImageBlock.style.display = 'block';
     idButtonChose.style.position = 'absolute';
     idButtonChose.style.right = '2%';
-    idButtonChose.innerHTML = 'Rechoisir';
+    idButtonChose.innerHTML = 'Changer Photo';
     idButtonChose.style.transition = '200ms';
   }
 

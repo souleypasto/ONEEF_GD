@@ -6,11 +6,11 @@ import { Vehicule } from 'src/app/MODELS/Vehicule';
 import { PompisteService } from 'src/app/SERVICES/POMPISTE/pompiste.service';
 import { LocalStorageService } from 'src/app/SERVICES/STORAGE/local-storage.service';
 import { CARS } from 'src/app/TOOLS/INITIALISATION/localStorageVar';
-import { Events, ActionSheetController } from '@ionic/angular';
+import { Events, ActionSheetController, AlertController } from '@ionic/angular';
 import { CommunFunction } from 'src/app/TOOLS/FUNCTIONS/communFunctions';
 import { LIST_USER_PUMP_STR, RACINE_URL_ONF } from 'src/app/TOOLS/INITIALISATION/initVar';
-import { Camera, CameraOptions } from '@ionic-native/Camera/ngx';
 import { DistributionService } from 'src/app/SERVICES/DISTRIBUTION/distribution.service';
+import { CameraService } from 'src/app/SERVICES/CAMERA/Camera.service';
 
 @Component({
   selector: 'app-distribution',
@@ -68,9 +68,10 @@ export class DistributionPage implements OnInit {
   constructor(
     private pompisteService: PompisteService,
     private localStore: LocalStorageService,
-    private camera: Camera,
     public actionSheetController: ActionSheetController,
     private distributionService: DistributionService,
+    private camService: CameraService,
+    private alertCtrl: AlertController,
     private util: CommunFunction,
     private events: Events) {
       this.xinitVarForCurrentForm();
@@ -163,6 +164,14 @@ export class DistributionPage implements OnInit {
   fullFieldCompartment() {
     // this.util.showPopupMessage('shift changer');
   }
+  /**
+   * annuler processus d'enregistrement dun nouvelle consommation
+   * @param :: nothings
+   * @returns :: Nothings
+   */
+   cancelProcess(): void {
+    this.util.redirectWithRouteQuery(`menu`);
+  }
 
   /**
    * permet de proceder a l'enregistrement dune consomation ou cas ou celle ci serai valider du
@@ -236,55 +245,6 @@ export class DistributionPage implements OnInit {
     });
   }
 
-  pickImage(sourceType) {
-    const options: CameraOptions = {
-    quality: 100,
-    sourceType: sourceType,
-    destinationType: this.camera.DestinationType.FILE_URI,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
-    };
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      this.imagePompe = imageData;
-      this.canValidateOperation = true;
-      this.cropImage(imageData);
-      }, (err) => {
-      // Handle error
-      });
-
-  }
-
-  cropImage(imageData: any) {
-    throw new Error('Method not implemented.');
-  }
-
-  async selectImage() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Sélectionner Image',
-      buttons: [{
-        text: 'Galerie',
-        handler: () => {
-          this.pickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
-        }
-      },
-      {
-        text: 'Camera',
-        handler: () => {
-          this.pickImage(this.camera.PictureSourceType.CAMERA);
-        }
-      },
-      {
-        text: 'Annuler',
-        role: 'cancel'
-      }
-      ]
-    });
-    await actionSheet.present();
-
-  }
-
    /**
     * calculer l'index consommer
     */
@@ -297,6 +257,97 @@ export class DistributionPage implements OnInit {
     } else {
       this.mesure = this.endIndex - this.startIndex;
     }
+  }
+
+
+  addPhotoNow() {
+    const choose = this.alertCtrl.create({
+      subHeader: 'Photo de profile',
+      inputs: [{
+          type: 'radio',
+          label: 'Prendre une photo',
+          value: 'Photo',
+          checked: true
+        },
+        {
+          type: 'radio',
+          label: 'Galerie',
+          value: 'Galerie',
+          checked: false
+        }
+
+      ],
+      buttons: [{
+          text: 'Cancel',
+          handler: () => {
+            console.log('cancel clicked');
+          }
+        },
+        {
+          text: 'OK',
+          handler: data => {
+            console.log('my choice checked', data);
+            if (data === 'Photo') {
+              this.getPictureFromCamera();
+            } else {
+              this.getPictureFromPhotoLibrary();
+            }
+          }
+        }
+      ]
+    }).then(chooseResp => {
+      chooseResp.present();
+    });
+    // choose.present();
+  }
+
+  getPictureFromPhotoLibrary() {
+    this.camService.getPictureFromPhotoLibrary().then((r: any) => {
+      if (r != null) {
+        const localMedia = this.processSelectedImage(r);
+        this.imagePompe = localMedia.image64;
+        this.canValidateOperation = true;
+        this.setImageBLockVisible();
+      }
+    }, (e: any) => {
+    });
+  }
+
+  getPictureFromCamera() {
+    this.camService.getPictureFromCamera().then(r => {
+      if (r != null) {
+        const localMedia = this.processSelectedImage(r);
+        this.imagePompe = localMedia.image64;
+        this.canValidateOperation = true;
+        this.setImageBLockVisible();
+      }
+    }, e => {
+    });
+  }
+
+  /**
+   * 
+   * @param mediaData
+   */
+  processSelectedImage(mediaData: any) {
+    return {
+      principal:   true,
+      image64: mediaData,
+      target: 'default'
+    };
+  }
+
+  /***
+   *
+   */
+  setImageBLockVisible() {
+    const idImageBlock = document.getElementById('imageBlock');
+    const idButtonChose = document.getElementById('buttonImage');
+    idImageBlock.style.display = 'block';
+    idButtonChose.style.position = 'absolute';
+    idButtonChose.style.right = '2%';
+    idButtonChose.innerHTML = 'Changer Photo';
+    idButtonChose.style.transition = '200ms';
   }
 
 }
